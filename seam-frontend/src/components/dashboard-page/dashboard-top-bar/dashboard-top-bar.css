@@ -1,0 +1,24 @@
+.dashboard-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 125px;
+}
+
+.dashboard-top-bar-logo {
+    height: 50px;
+    margin-left: 25px
+}
+
+.dashboard-top-bar-typeface {
+    height: 15px;
+    margin-left: 15px
+}
+
+.dashboard-top-bar-text {
+    margin-left: 25px;
+
+    font-family: 'Roboto Light';
+    font-size: 28px;
+}
