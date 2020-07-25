@@ -1,8 +1,0 @@
-.dashboard-nav-bar {
-    display: flex;
-
-    width: 150px;
-    height: calc(100vh - 115px);
-
-    background-color: red;
-}

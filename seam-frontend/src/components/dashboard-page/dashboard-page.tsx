@@ -1,8 +1,6 @@
-import React from 'react';
-import DashboardTopBar from './dashboard-top-bar/dashboard-top-bar';
-import DashboardNavBar from './dashboard-nav-bar/dashboard-nav-bar';
-
-import './dashboard-page.css';
+import * as React from 'react';
+import DashboardTopBar from './dashboard-top-bar';
+import DashboardNavBar from './dashboard-nav-bar';
 
 function DashboardPage() {
     document.title = 'Seam Dashboard';

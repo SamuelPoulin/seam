@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 
 function NotFoundPage() {
     return (
         <>
-        Not Found
+            Not Found
         </>
     );
 }
