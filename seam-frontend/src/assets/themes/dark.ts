@@ -1,17 +1,21 @@
-import { DefaultTheme } from 'styled-components'
+import { DefaultTheme } from "styled-components";
 
 export const darkTheme: DefaultTheme = {
-    colors: {
-        background: '',
-        onBackground: '',
+  colors: {
+    background: "",
+    onBackground: "",
+    hoverBackground: "",
 
-        primary: '',
-        onPrimary: '',
+    primary: "",
+    onPrimary: "",
+    hoverPrimary: "",
 
-        secondary: '',
-        onSecondary: '',
+    secondary: "",
+    onSecondary: "",
+    hoverSecondary: "",
 
-        accent: '',
-        onAccent: '',
-    },
-}
+    accent: "",
+    onAccent: "",
+    hoverAccent: "",
+  },
+};

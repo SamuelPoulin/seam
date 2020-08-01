@@ -1,20 +1,22 @@
-import * as React from 'react';
-import styled from 'styled-components'
+import * as React from "react";
+import styled from "styled-components";
 
 const StyledButton = styled.button`
-    background-color: ${props => props.theme.colors.secondary};
-    border-radius: 10px;
-    height: 60px;
-    width: 60px;
-    border: none;
+  border: none;
+  cursor: pointer;
+  margin: 0px;
+  padding: 0px;
+
+  background-color: ${(props) => props.theme.colors.secondary};
+  border-radius: 10px;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors.hoverSecondary};
+  }
 `;
 
 function Button(props: any) {
-    return (
-        <StyledButton>
-            {props.children}
-        </StyledButton>
-    );
+  return <StyledButton>{props.children}</StyledButton>;
 }
 
 export default Button;
