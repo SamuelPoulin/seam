@@ -11,21 +11,15 @@ import NotFoundPage from './components/not-found-page/not-found-page';
 
 function App(): JSX.Element {
     return (
-        <React.Fragment>
+        <>
             <Router>
                 <Switch>
-                    <Route path="/" exact>
-                        <LoginPage />
-                    </Route>
-                    <Route path="/dashboard" exact>
-                        <DashboardPage />
-                    </Route>
-                    <Route>
-                        <NotFoundPage />
-                    </Route>
+                    <Route exact path="/" render={LoginPage} />
+                    <Route path="/dashboard" render={DashboardPage} />
+                    <Route render={NotFoundPage} />
                 </Switch>
             </Router>
-        </React.Fragment>
+        </>
     );
 }
 
