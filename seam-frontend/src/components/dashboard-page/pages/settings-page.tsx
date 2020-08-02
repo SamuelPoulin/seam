@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-function SettingsPage() {
-  return <>Settings</>;
+function SettingsPage(): JSX.Element {
+    return <>Settings</>;
 }
 
 export default SettingsPage;

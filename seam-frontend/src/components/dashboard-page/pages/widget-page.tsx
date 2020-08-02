@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-function WidgetPage() {
-  return <>Widget</>;
+function WidgetPage(): JSX.Element {
+    return <>Widget</>;
 }
 
 export default WidgetPage;

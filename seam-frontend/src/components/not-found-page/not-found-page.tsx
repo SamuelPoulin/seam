@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function NotFoundPage() {
+function NotFoundPage(): JSX.Element {
     return (
         <>
             Not Found

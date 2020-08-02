@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-function StatisticsPage() {
-  return <>Statistics</>;
+function StatisticsPage(): JSX.Element {
+    return <>Statistics</>;
 }
 
 export default StatisticsPage;

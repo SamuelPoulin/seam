@@ -4,7 +4,7 @@ export interface IconProps {
     size: number;
 }
 
-export function CalendarIcon({ size }: IconProps) {
+export function CalendarIcon({ size }: IconProps): JSX.Element {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size}>
             <path d="M0 0h24v24H0V0z" fill="none" />
@@ -13,7 +13,7 @@ export function CalendarIcon({ size }: IconProps) {
     );
 }
 
-export function StatisticsIcon({ size }: IconProps) {
+export function StatisticsIcon({ size }: IconProps): JSX.Element {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size}>
             <path d="M0 0h24v24H0V0z" fill="none" />
@@ -22,7 +22,7 @@ export function StatisticsIcon({ size }: IconProps) {
     );
 }
 
-export function SettingsIcon({ size }: IconProps) {
+export function SettingsIcon({ size }: IconProps): JSX.Element {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size}>
             <path d="M0 0h24v24H0V0z" fill="none" />
@@ -31,7 +31,7 @@ export function SettingsIcon({ size }: IconProps) {
     );
 }
 
-export function ExtensionsIcon({ size }: IconProps) {
+export function ExtensionsIcon({ size }: IconProps): JSX.Element {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size}>
             <path d="M0 0h24v24H0V0z" fill="none" />
@@ -40,7 +40,7 @@ export function ExtensionsIcon({ size }: IconProps) {
     );
 }
 
-export function WidgetsIcon({ size }: IconProps) {
+export function WidgetsIcon({ size }: IconProps): JSX.Element {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size}>
             <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />

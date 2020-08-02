@@ -1,8 +1,8 @@
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 
-import logo from "../../assets/images/logo.png";
-import typeface from "../../assets/images/typeface.png";
+import logo from '../../assets/images/logo.png';
+import typeface from '../../assets/images/typeface.png';
 
 const StyledLogo = styled.img`
   height: 60px;
@@ -29,14 +29,14 @@ const StyledWrapper = styled.div`
   height: 100px;
 `;
 
-function DashboardTopBar() {
-  return (
-    <StyledWrapper>
-      <StyledLogo className="noselect" src={logo} alt="" />
-      <StyledTypeface className="noselect" src={typeface} alt="" />
-      <StyledTitle className="noselect">Dashboard</StyledTitle>
-    </StyledWrapper>
-  );
+function DashboardTopBar(): JSX.Element {
+    return (
+        <StyledWrapper>
+            <StyledLogo className="noselect" src={logo} alt="" />
+            <StyledTypeface className="noselect" src={typeface} alt="" />
+            <StyledTitle className="noselect">Dashboard</StyledTitle>
+        </StyledWrapper>
+    );
 }
 
 export default DashboardTopBar;

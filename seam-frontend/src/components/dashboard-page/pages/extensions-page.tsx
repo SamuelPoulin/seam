@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-function ExtensionsPage() {
-  return <>Extensions</>;
+function ExtensionsPage(): JSX.Element {
+    return <>Extensions</>;
 }
 
 export default ExtensionsPage;

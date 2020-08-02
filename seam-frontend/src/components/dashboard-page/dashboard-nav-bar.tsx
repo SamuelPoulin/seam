@@ -1,14 +1,14 @@
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 
-import Button from "../shared/button";
+import Button from '../shared/button';
 import {
-  CalendarIcon,
-  StatisticsIcon,
-  ExtensionsIcon,
-  SettingsIcon,
-  WidgetsIcon,
-} from "../shared/icons";
+    CalendarIcon,
+    StatisticsIcon,
+    ExtensionsIcon,
+    SettingsIcon,
+    WidgetsIcon,
+} from '../shared/icons';
 
 const StyledMainWrapper = styled.div`
   display: flex;
@@ -37,33 +37,33 @@ const StyledDivider = styled.div`
   margin: 15px 0px;
 `;
 
-const ICON_SIZE: number = 30;
+const ICON_SIZE = 30;
 
-function DashboardNavBar() {
-  return (
-    <StyledMainWrapper>
-      <StyledWrapper>
-        <Button>
-          <CalendarIcon size={ICON_SIZE} />
-        </Button>
-        <StyledDivider />
-        <Button>
-          <StatisticsIcon size={ICON_SIZE} />
-        </Button>
-        <Button>
-          <WidgetsIcon size={ICON_SIZE} />
-        </Button>
-        <Button>
-          <ExtensionsIcon size={ICON_SIZE} />
-        </Button>
-      </StyledWrapper>
-      <StyledWrapper>
-        <Button>
-          <SettingsIcon size={ICON_SIZE} />
-        </Button>
-      </StyledWrapper>
-    </StyledMainWrapper>
-  );
+function DashboardNavBar(): JSX.Element {
+    return (
+        <StyledMainWrapper>
+            <StyledWrapper>
+                <Button>
+                    <CalendarIcon size={ICON_SIZE} />
+                </Button>
+                <StyledDivider />
+                <Button>
+                    <StatisticsIcon size={ICON_SIZE} />
+                </Button>
+                <Button>
+                    <WidgetsIcon size={ICON_SIZE} />
+                </Button>
+                <Button>
+                    <ExtensionsIcon size={ICON_SIZE} />
+                </Button>
+            </StyledWrapper>
+            <StyledWrapper>
+                <Button>
+                    <SettingsIcon size={ICON_SIZE} />
+                </Button>
+            </StyledWrapper>
+        </StyledMainWrapper>
+    );
 }
 
 export default DashboardNavBar;

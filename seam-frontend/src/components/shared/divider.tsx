@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -18,12 +18,12 @@ const StyledDivider = styled.div`
   border-radius: 10px;
 `;
 
-function Divider() {
-  return (
-    <StyledWrapper>
-      <StyledDivider />
-    </StyledWrapper>
-  );
+function Divider(): JSX.Element {
+    return (
+        <StyledWrapper>
+            <StyledDivider />
+        </StyledWrapper>
+    );
 }
 
 export default Divider;

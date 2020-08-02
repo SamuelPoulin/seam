@@ -1,5 +1,5 @@
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 
 const StyledButton = styled.button`
   border: none;
@@ -15,8 +15,12 @@ const StyledButton = styled.button`
   }
 `;
 
-function Button(props: any) {
-  return <StyledButton>{props.children}</StyledButton>;
+export interface ButtonProps {
+  children: JSX.Element;
+}
+
+function Button({ children }: ButtonProps): JSX.Element {
+    return <StyledButton>{children}</StyledButton>;
 }
 
 export default Button;

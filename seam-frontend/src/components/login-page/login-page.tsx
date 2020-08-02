@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function LoginPage() {
+function LoginPage(): JSX.Element {
     return (
         <>
             Login Page

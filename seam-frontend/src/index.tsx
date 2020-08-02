@@ -8,12 +8,12 @@ import { lightTheme } from './assets/themes/light';
 import { ThemeProvider } from 'styled-components';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={lightTheme}>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <ThemeProvider theme={lightTheme}>
+            <App />
+        </ThemeProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
