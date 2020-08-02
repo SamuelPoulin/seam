@@ -6,7 +6,7 @@ const StyledMainWrapper = styled.div`
 `;
 
 function SchedulePage(): JSX.Element {
-    return <StyledMainWrapper>Schedule</StyledMainWrapper>;
+  return <StyledMainWrapper>Schedule</StyledMainWrapper>;
 }
 
 export default SchedulePage;

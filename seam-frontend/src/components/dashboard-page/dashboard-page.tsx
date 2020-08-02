@@ -9,7 +9,7 @@ import StatisticsPage from './pages/statistics-page';
 import WidgetPage from './pages/widget-page';
 import ExtensionsPage from './pages/extensions-page';
 import SettingsPage from './pages/settings-page';
-import { Route, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -17,7 +17,6 @@ const StyledContainer = styled.div`
   width: 100%;
   height: calc(100vh - 100px);
 `;
-
 
 function DashboardPage({ match }: any): JSX.Element {
     document.title = 'Seam Dashboard';
