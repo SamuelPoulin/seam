@@ -1,7 +1,7 @@
-import * as React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { withTheme } from 'styled-components';
 
-import Button from '../shared/button';
+import LinkButton from '../shared/linkbutton';
 import {
     CalendarIcon,
     StatisticsIcon,
@@ -39,31 +39,33 @@ const StyledDivider = styled.div`
 
 const ICON_SIZE = 30;
 
-function DashboardNavBar(): JSX.Element {
+function DashboardNavBar({ theme }: any): JSX.Element {
+    const [currentPage, setCurrentPage] = useState('SchedulePage');
+
     return (
         <StyledMainWrapper>
             <StyledWrapper>
-                <Button>
-                    <CalendarIcon size={ICON_SIZE} />
-                </Button>
+                <LinkButton to="/" onClick={() => setCurrentPage('SchedulePage')}>
+                    <CalendarIcon size={ICON_SIZE} color={currentPage === 'SchedulePage' ? theme.colors.accent : theme.colors.onSecondary} />
+                </LinkButton>
                 <StyledDivider />
-                <Button>
-                    <StatisticsIcon size={ICON_SIZE} />
-                </Button>
-                <Button>
-                    <WidgetsIcon size={ICON_SIZE} />
-                </Button>
-                <Button>
-                    <ExtensionsIcon size={ICON_SIZE} />
-                </Button>
+                <LinkButton to="/statistics" onClick={() => setCurrentPage('StatisticsPage')}>
+                    <StatisticsIcon size={ICON_SIZE} color={currentPage === 'StatisticsPage' ? theme.colors.accent : theme.colors.onSecondary} />
+                </LinkButton>
+                <LinkButton to="/widget" onClick={() => setCurrentPage('WidgetPage')}>
+                    <WidgetsIcon size={ICON_SIZE} color={currentPage === 'WidgetPage' ? theme.colors.accent : theme.colors.onSecondary} />
+                </LinkButton>
+                <LinkButton to="/extensions" onClick={() => setCurrentPage('ExtensionsPage')}>
+                    <ExtensionsIcon size={ICON_SIZE} color={currentPage === 'ExtensionsPage' ? theme.colors.accent : theme.colors.onSecondary} />
+                </LinkButton>
             </StyledWrapper>
             <StyledWrapper>
-                <Button>
-                    <SettingsIcon size={ICON_SIZE} />
-                </Button>
+                <LinkButton to="/settings" onClick={() => setCurrentPage('SettingsPage')}>
+                    <SettingsIcon size={ICON_SIZE} color={currentPage === 'SettingsPage' ? theme.colors.accent : theme.colors.onSecondary} />
+                </LinkButton>
             </StyledWrapper>
         </StyledMainWrapper>
     );
 }
 
-export default DashboardNavBar;
+export default withTheme(DashboardNavBar);
