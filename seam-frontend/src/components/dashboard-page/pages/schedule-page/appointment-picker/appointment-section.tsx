@@ -66,6 +66,8 @@ const StyledContactInfoContainer = styled.div`
 `;
 
 const StyledAppointMent = styled.div`
+  grid-area: appointment;
+
   display: flex;
   flex-direction: column;
 

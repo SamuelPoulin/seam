@@ -1,18 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import DaySection from './day-section';
+import DaySection from './day-section/day-section';
 import AppointmentSection from './appointment-section';
 
 const StyledAppointmentPicker = styled.div`
-  display: flex;
-
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+  'appointment day';
+  
   width: 95%;
   height: 100%;
 
   padding-bottom: 25px;
 
   @media (max-width: 1200px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    'day'
+    'appointment';
   }
 `;
 

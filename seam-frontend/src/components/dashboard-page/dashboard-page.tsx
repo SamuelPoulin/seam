@@ -17,7 +17,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledActivePage = styled.div`
-  margin-left: 100px;
+  margin-left: 104px;
 `;
 
 function DashboardPage({ match }: any): JSX.Element {
