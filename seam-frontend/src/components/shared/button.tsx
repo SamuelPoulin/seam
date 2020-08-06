@@ -1,7 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
   border: none;
   cursor: pointer;
   margin: 0px;
@@ -16,11 +20,12 @@ const StyledButton = styled.button`
 `;
 
 export interface ButtonProps {
-  children: JSX.Element;
+  children?: JSX.Element;
+  onClick?: () => void;
 }
 
-function Button({ children }: ButtonProps): JSX.Element {
-    return <StyledButton>{children}</StyledButton>;
+function Button({ children, onClick }: ButtonProps): JSX.Element {
+  return <StyledButton onClick={onClick}>{children}</StyledButton>;
 }
 
 export default Button;

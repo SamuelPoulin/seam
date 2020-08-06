@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import styled, { withTheme } from 'styled-components';
 
-import LinkButton from '../shared/linkbutton';
-import {
-    CalendarIcon,
-    StatisticsIcon,
-    ExtensionsIcon,
-    SettingsIcon,
-    WidgetsIcon,
-} from '../shared/icons';
+import LinkButton from '../shared/link-button';
+import Icon from '../shared/icon';
 
 const StyledMainWrapper = styled.div`
   display: flex;
@@ -39,29 +33,39 @@ const StyledDivider = styled.div`
 
 const ICON_SIZE = 30;
 
+enum Pages {
+    Schedule = 'schedule',
+    Statistics = 'statistics',
+    Widget = 'widget',
+    Extensions = 'extensions',
+    Settings = 'settings',
+}
+
 function DashboardNavBar({ theme }: any): JSX.Element {
-    const [currentPage, setCurrentPage] = useState('SchedulePage');
+    const [currentPage, setCurrentPage] = useState(Pages.Schedule);
+
+    function determineColor(page: string): string { return currentPage === page ? theme.colors.accent : theme.colors.onSecondary };
 
     return (
         <StyledMainWrapper>
             <StyledWrapper>
-                <LinkButton to="/" onClick={() => setCurrentPage('SchedulePage')}>
-                    <CalendarIcon size={ICON_SIZE} color={currentPage === 'SchedulePage' ? theme.colors.accent : theme.colors.onSecondary} />
+                <LinkButton to="/" onClick={() => setCurrentPage(Pages.Schedule)}>
+                    <Icon size={ICON_SIZE} color={determineColor(Pages.Schedule)}>calendar</Icon>
                 </LinkButton>
                 <StyledDivider />
-                <LinkButton to="/statistics" onClick={() => setCurrentPage('StatisticsPage')}>
-                    <StatisticsIcon size={ICON_SIZE} color={currentPage === 'StatisticsPage' ? theme.colors.accent : theme.colors.onSecondary} />
+                <LinkButton to="/statistics" onClick={() => setCurrentPage(Pages.Statistics)}>
+                    <Icon size={ICON_SIZE} color={determineColor(Pages.Statistics)}>statistics</Icon>
                 </LinkButton>
-                <LinkButton to="/widget" onClick={() => setCurrentPage('WidgetPage')}>
-                    <WidgetsIcon size={ICON_SIZE} color={currentPage === 'WidgetPage' ? theme.colors.accent : theme.colors.onSecondary} />
+                <LinkButton to="/widget" onClick={() => setCurrentPage(Pages.Widget)}>
+                    <Icon size={ICON_SIZE} color={determineColor(Pages.Widget)}>widget</Icon>
                 </LinkButton>
-                <LinkButton to="/extensions" onClick={() => setCurrentPage('ExtensionsPage')}>
-                    <ExtensionsIcon size={ICON_SIZE} color={currentPage === 'ExtensionsPage' ? theme.colors.accent : theme.colors.onSecondary} />
+                <LinkButton to="/extensions" onClick={() => setCurrentPage(Pages.Extensions)}>
+                    <Icon size={ICON_SIZE} color={determineColor(Pages.Extensions)}>extensions</Icon>
                 </LinkButton>
             </StyledWrapper>
             <StyledWrapper>
-                <LinkButton to="/settings" onClick={() => setCurrentPage('SettingsPage')}>
-                    <SettingsIcon size={ICON_SIZE} color={currentPage === 'SettingsPage' ? theme.colors.accent : theme.colors.onSecondary} />
+                <LinkButton to="/settings" onClick={() => setCurrentPage(Pages.Settings)}>
+                    <Icon size={ICON_SIZE} color={determineColor(Pages.Settings)}>settings</Icon>
                 </LinkButton>
             </StyledWrapper>
         </StyledMainWrapper>

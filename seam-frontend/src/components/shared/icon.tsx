@@ -1,11 +1,33 @@
 import * as React from 'react';
 
 export interface IconProps {
+    children: string;
     size: number;
-    color?: string;
+    color: string;
 }
 
-export function CalendarIcon({ size, color }: IconProps): JSX.Element {
+function Icon({ children, size, color }: IconProps): JSX.Element {
+    switch (children) {
+        case 'calendar':
+            return CalendarIcon(size, color);
+        case 'statistics':
+            return StatisticsIcon(size, color)
+        case 'widget':
+            return WidgetIcon(size, color);
+        case 'settings':
+            return SettingsIcon(size, color);
+        case 'extensions':
+            return ExtensionsIcon(size, color);
+        case 'previous':
+            return PreviousIcon(size, color);
+        case 'next':
+            return NextIcon(size, color);
+    }
+
+    return (<></>);
+}
+
+function CalendarIcon(size: number, color: string): JSX.Element {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill={color}>
             <path d="M0 0h24v24H0V0z" fill="none" />
@@ -14,7 +36,7 @@ export function CalendarIcon({ size, color }: IconProps): JSX.Element {
     );
 }
 
-export function StatisticsIcon({ size, color }: IconProps): JSX.Element {
+function StatisticsIcon(size: number, color: string): JSX.Element {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill={color}>
             <path d="M0 0h24v24H0V0z" fill="none" />
@@ -23,7 +45,7 @@ export function StatisticsIcon({ size, color }: IconProps): JSX.Element {
     );
 }
 
-export function SettingsIcon({ size, color }: IconProps): JSX.Element {
+function SettingsIcon(size: number, color: string): JSX.Element {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill={color}>
             <path d="M0 0h24v24H0V0z" fill="none" />
@@ -32,7 +54,7 @@ export function SettingsIcon({ size, color }: IconProps): JSX.Element {
     );
 }
 
-export function ExtensionsIcon({ size, color }: IconProps): JSX.Element {
+function ExtensionsIcon(size: number, color: string): JSX.Element {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill={color}>
             <path d="M0 0h24v24H0V0z" fill="none" />
@@ -41,7 +63,7 @@ export function ExtensionsIcon({ size, color }: IconProps): JSX.Element {
     );
 }
 
-export function WidgetsIcon({ size, color }: IconProps): JSX.Element {
+function WidgetIcon(size: number, color: string): JSX.Element {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill={color}>
             <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />
@@ -49,3 +71,23 @@ export function WidgetsIcon({ size, color }: IconProps): JSX.Element {
         </svg>
     );
 }
+
+function PreviousIcon(size: number, color: string): JSX.Element {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill={color}>
+            <path d="M0 0h24v24H0V0z" fill="none" opacity=".87" />
+            <path d="M16.62 2.99c-.49-.49-1.28-.49-1.77 0L6.54 11.3c-.39.39-.39 1.02 0 1.41l8.31 8.31c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.38 12l7.25-7.25c.48-.48.48-1.28-.01-1.76z" />
+        </svg>
+    );
+}
+
+function NextIcon(size: number, color: string): JSX.Element {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size} height={size} fill={color}>
+            <path d="M24 24H0V0h24v24z" fill="none" opacity=".87" />
+            <path d="M7.38 21.01c.49.49 1.28.49 1.77 0l8.31-8.31c.39-.39.39-1.02 0-1.41L9.15 2.98c-.49-.49-1.28-.49-1.77 0s-.49 1.28 0 1.77L14.62 12l-7.25 7.25c-.48.48-.48 1.28.01 1.76z" />
+        </svg>
+    );
+}
+
+export default Icon;
