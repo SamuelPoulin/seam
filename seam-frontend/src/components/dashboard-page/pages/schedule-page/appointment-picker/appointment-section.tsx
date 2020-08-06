@@ -43,6 +43,11 @@ const StyledContactSectionContainer = styled.div`
   font-family: 'Roboto Regular';
   font-size: 24px;
   color: ${(props) => props.theme.colors.onBackground};
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const StyledContactInfoContainer = styled.div`
@@ -53,6 +58,10 @@ const StyledContactInfoContainer = styled.div`
 
     svg {
         margin-right: 5px;
+    }
+
+    @media (max-width: 1200px) {
+        margin: 5px 0px;
     }
 `;
 

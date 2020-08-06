@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import DashboardTopBar from './dashboard-top-bar';
 import DashboardNavBar from './dashboard-nav-bar';
-import Divider from '../shared/divider';
 import SchedulePage from './pages/schedule-page/schedule-page';
 import StatisticsPage from './pages/statistics-page';
 import WidgetPage from './pages/widget-page';
