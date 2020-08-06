@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import MonthPicker from './month-picker';
 import DayPicker from './day-picker';
-import AppointmentPicker from './appointment-picker';
+import AppointmentPicker from './appointment-picker/appointment-picker';
 import SelectedDateContext from '../../../shared/selected-date-context';
 
 const StyledMainWrapper = styled.div`

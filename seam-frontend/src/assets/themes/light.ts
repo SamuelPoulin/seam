@@ -1,6 +1,8 @@
 import { DefaultTheme } from 'styled-components';
 
 export const lightTheme: DefaultTheme = {
+    iconSize: 30,
+
     colors: {
         background: 'white',
         onBackground: '#0A1429',

@@ -1,6 +1,8 @@
 import { DefaultTheme } from 'styled-components';
 
 export const darkTheme: DefaultTheme = {
+    iconSize: 30,
+
     colors: {
         background: '',
         onBackground: '',

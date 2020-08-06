@@ -20,7 +20,7 @@ export const StyledButton = styled.button`
 `;
 
 export interface ButtonProps {
-  children?: JSX.Element;
+  children?: JSX.Element | JSX.Element[];
   onClick?: () => void;
 }
 

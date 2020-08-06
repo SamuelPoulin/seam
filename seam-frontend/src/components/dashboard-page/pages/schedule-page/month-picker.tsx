@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 import Button from '../../../shared/button';
 import Icon from '../../../shared/icon';
 import SelectedDateContext from '../../../shared/selected-date-context';
@@ -23,10 +23,9 @@ const StyledMonthPicker = styled.div`
   }
 `;
 
-const ICON_SIZE = 30;
-
-function MonthPicker({ theme }: any): JSX.Element {
+function MonthPicker(): JSX.Element {
     const { selectedDate, setSelectedDate } = useContext(SelectedDateContext);
+    const theme = useContext(ThemeContext);
 
     function decrementMonth() { setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1)) }
     function incrementMonth() { setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1)) }
@@ -34,14 +33,14 @@ function MonthPicker({ theme }: any): JSX.Element {
     return (
         <StyledMonthPicker>
             <Button onClick={() => decrementMonth()}>
-                <Icon size={ICON_SIZE} color={theme.colors.onSecondary}>previous</Icon>
+                <Icon size={theme.iconSize} color={theme.colors.onSecondary}>previous</Icon>
             </Button>
             {selectedDate.toLocaleString('defaut', { month: 'long', year: 'numeric' })}
             <Button onClick={() => incrementMonth()}>
-                <Icon size={ICON_SIZE} color={theme.colors.onSecondary}>next</Icon>
+                <Icon size={theme.iconSize} color={theme.colors.onSecondary}>next</Icon>
             </Button>
         </StyledMonthPicker>
     );
 }
 
-export default withTheme(MonthPicker);
+export default MonthPicker;
