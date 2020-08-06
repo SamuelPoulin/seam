@@ -7,7 +7,6 @@ const StyledWrapper = styled.div`
   justify-content: center;
 
   width: 2px;
-  height: 100%;
 `;
 
 const StyledDivider = styled.div`
@@ -19,11 +18,11 @@ const StyledDivider = styled.div`
 `;
 
 function Divider(): JSX.Element {
-    return (
-        <StyledWrapper>
-            <StyledDivider />
-        </StyledWrapper>
-    );
+  return (
+    <StyledWrapper>
+      <StyledDivider />
+    </StyledWrapper>
+  );
 }
 
 export default Divider;

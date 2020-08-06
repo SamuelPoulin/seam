@@ -3,20 +3,31 @@ import styled, { ThemeContext } from 'styled-components';
 
 import LinkButton from '../shared/link-button';
 import Icon from '../shared/icon';
+import Divider from '../shared/divider';
 
 const StyledMainWrapper = styled.div`
+  position: fixed;
+
+  display: flex;
+  flex-direction: row;
+
+  height: calc(100vh - 100px);
+  width: 104px;
+`;
+
+const StyledNavBarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
-  width: 100px;
   height: 100%;
 `;
 
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
   align-items: center;
   margin: 25px;
 
@@ -31,44 +42,56 @@ const StyledDivider = styled.div`
   margin: 15px 0px;
 `;
 
+const StyledDividerContainer = styled.div`
+  display: flex;
+  
+  height: 100%;
+  width: 4px;
+`;
+
 enum Pages {
-    Schedule = 'schedule',
-    Statistics = 'statistics',
-    Widget = 'widget',
-    Extensions = 'extensions',
-    Settings = 'settings',
+  Schedule = 'schedule',
+  Statistics = 'statistics',
+  Widget = 'widget',
+  Extensions = 'extensions',
+  Settings = 'settings',
 }
 
 function DashboardNavBar(): JSX.Element {
-    const [currentPage, setCurrentPage] = useState(Pages.Schedule);
-    const theme = useContext(ThemeContext);
+  const [currentPage, setCurrentPage] = useState(Pages.Schedule);
+  const theme = useContext(ThemeContext);
 
-    function determineColor(page: string): string { return currentPage === page ? theme.colors.accent : theme.colors.onSecondary };
+  function determineColor(page: string): string { return currentPage === page ? theme.colors.accent : theme.colors.onSecondary };
 
-    return (
-        <StyledMainWrapper>
-            <StyledWrapper>
-                <LinkButton to="/" onClick={() => setCurrentPage(Pages.Schedule)}>
-                    <Icon size={theme.iconSize} color={determineColor(Pages.Schedule)}>calendar</Icon>
-                </LinkButton>
-                <StyledDivider />
-                <LinkButton to="/statistics" onClick={() => setCurrentPage(Pages.Statistics)}>
-                    <Icon size={theme.iconSize} color={determineColor(Pages.Statistics)}>statistics</Icon>
-                </LinkButton>
-                <LinkButton to="/widget" onClick={() => setCurrentPage(Pages.Widget)}>
-                    <Icon size={theme.iconSize} color={determineColor(Pages.Widget)}>widget</Icon>
-                </LinkButton>
-                <LinkButton to="/extensions" onClick={() => setCurrentPage(Pages.Extensions)}>
-                    <Icon size={theme.iconSize} color={determineColor(Pages.Extensions)}>extensions</Icon>
-                </LinkButton>
-            </StyledWrapper>
-            <StyledWrapper>
-                <LinkButton to="/settings" onClick={() => setCurrentPage(Pages.Settings)}>
-                    <Icon size={theme.iconSize} color={determineColor(Pages.Settings)}>settings</Icon>
-                </LinkButton>
-            </StyledWrapper>
-        </StyledMainWrapper>
-    );
+  return (
+    <StyledMainWrapper>
+      <StyledNavBarContainer>
+        <StyledWrapper>
+          <LinkButton to="/" onClick={() => setCurrentPage(Pages.Schedule)}>
+            <Icon size={theme.iconSize} color={determineColor(Pages.Schedule)}>calendar</Icon>
+          </LinkButton>
+          <StyledDivider />
+          <LinkButton to="/statistics" onClick={() => setCurrentPage(Pages.Statistics)}>
+            <Icon size={theme.iconSize} color={determineColor(Pages.Statistics)}>statistics</Icon>
+          </LinkButton>
+          <LinkButton to="/widget" onClick={() => setCurrentPage(Pages.Widget)}>
+            <Icon size={theme.iconSize} color={determineColor(Pages.Widget)}>widget</Icon>
+          </LinkButton>
+          <LinkButton to="/extensions" onClick={() => setCurrentPage(Pages.Extensions)}>
+            <Icon size={theme.iconSize} color={determineColor(Pages.Extensions)}>extensions</Icon>
+          </LinkButton>
+        </StyledWrapper>
+        <StyledWrapper>
+          <LinkButton to="/settings" onClick={() => setCurrentPage(Pages.Settings)}>
+            <Icon size={theme.iconSize} color={determineColor(Pages.Settings)}>settings</Icon>
+          </LinkButton>
+        </StyledWrapper>
+      </StyledNavBarContainer>
+      <StyledDividerContainer>
+        <Divider />
+      </StyledDividerContainer>
+    </StyledMainWrapper>
+  );
 }
 
 export default DashboardNavBar;

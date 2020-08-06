@@ -15,7 +15,10 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: calc(100vh - 100px);
+`;
+
+const StyledActivePage = styled.div`
+  margin-left: 100px;
 `;
 
 function DashboardPage({ match }: any): JSX.Element {
@@ -26,12 +29,13 @@ function DashboardPage({ match }: any): JSX.Element {
             <DashboardTopBar />
             <StyledContainer>
                 <DashboardNavBar />
-                <Divider />
-                <Route exact path={match.path} component={SchedulePage} />
-                <Route path={`${match.path}/statistics`} component={StatisticsPage} />
-                <Route path={`${match.path}/widget`} component={WidgetPage} />
-                <Route path={`${match.path}/extensions`} component={ExtensionsPage} />
-                <Route path={`${match.path}/settings`} component={SettingsPage} />
+                <StyledActivePage>
+                    <Route exact path={match.path} component={SchedulePage} />
+                    <Route path={`${match.path}/statistics`} component={StatisticsPage} />
+                    <Route path={`${match.path}/widget`} component={WidgetPage} />
+                    <Route path={`${match.path}/extensions`} component={ExtensionsPage} />
+                    <Route path={`${match.path}/settings`} component={SettingsPage} />
+                </StyledActivePage>
             </StyledContainer>
         </>
     );
