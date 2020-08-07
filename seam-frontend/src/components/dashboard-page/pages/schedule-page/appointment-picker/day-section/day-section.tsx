@@ -36,7 +36,7 @@ const StyledAppointmentList = styled.div`
   align-items: center;
 
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
 
   margin: 20px 0px;
 `;
