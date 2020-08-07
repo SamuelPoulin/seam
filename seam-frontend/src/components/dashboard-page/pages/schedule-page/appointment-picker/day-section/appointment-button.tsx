@@ -1,15 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
-import { StyledButton, ButtonProps } from '../../../../../shared/button';
-import { Appointment } from '../../../../../../models/appointment';
+import React from "react";
+import styled from "styled-components";
+import { StyledButton, ButtonProps } from "../../../../../shared/button";
+import { Appointment } from "../../../../../../models/appointment";
 
 const StyledAppointmentButton = styled.div`
   position: relative;
   display: flex;
   align-items: center;
 
-  height: 75px;
-  width: 170px;
+  height: 60px;
+  width: 136px;
 
   margin-right: 25px;
 `;
@@ -17,11 +17,11 @@ const StyledAppointmentButton = styled.div`
 const StyledAppointmentTimeButton = styled(StyledButton)`
   display: flex;
   z-index: 1;
-  height: 50px;
-  width: 170px;
+  height: 40px;
+  width: 136px;
 
-  font-family: 'Roboto Regular';
-  font-size: 24px;
+  font-family: "Roboto Regular";
+  font-size: 18px;
 `;
 
 const StyledDayProgressBar = styled.div<CustomProps>`
@@ -30,7 +30,7 @@ const StyledDayProgressBar = styled.div<CustomProps>`
   display: flex;
 
   width: 4px;
-  height: 75px;
+  height: 60px;
   border-radius: 100px;
 
   background-color: ${(props) => props.theme.colors.accent};
@@ -44,13 +44,31 @@ export interface AppointmentButtonProps extends ButtonProps {
   appointment: Appointment;
 }
 
-function AppointmentButton({ appointment }: AppointmentButtonProps): JSX.Element {
-  const startTimeText = appointment.startTime.toLocaleString('default', { hour: '2-digit', minute: '2-digit', hour12: false }).replace('AM', '').replace('PM', '');
-  const endTimeText = appointment.endTime.toLocaleString('default', { hour: '2-digit', minute: '2-digit', hour12: false }).replace('AM', '').replace('PM', '');
+function AppointmentButton({
+  appointment,
+}: AppointmentButtonProps): JSX.Element {
+  const startTimeText = appointment.startTime
+    .toLocaleString("default", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    })
+    .replace("AM", "")
+    .replace("PM", "");
+  const endTimeText = appointment.endTime
+    .toLocaleString("default", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    })
+    .replace("AM", "")
+    .replace("PM", "");
 
   function getAppointmentProgress(): number {
-    const totalTime: number = appointment.endTime.valueOf() - appointment.startTime.valueOf();
-    const timeElapsed: number = Date.now().valueOf() - appointment.startTime.valueOf();
+    const totalTime: number =
+      appointment.endTime.valueOf() - appointment.startTime.valueOf();
+    const timeElapsed: number =
+      Date.now().valueOf() - appointment.startTime.valueOf();
 
     return timeElapsed / totalTime;
   }
@@ -59,12 +77,12 @@ function AppointmentButton({ appointment }: AppointmentButtonProps): JSX.Element
 
   return (
     <StyledAppointmentButton>
-      <StyledAppointmentTimeButton>{startTimeText + ' - ' + endTimeText}</StyledAppointmentTimeButton>
-      {
-        progress >= 0 && progress <= 1 ?
-          <StyledDayProgressBar progress={getAppointmentProgress()} />
-          : undefined
-      }
+      <StyledAppointmentTimeButton>
+        {startTimeText + " - " + endTimeText}
+      </StyledAppointmentTimeButton>
+      {progress >= 0 && progress <= 1 ? (
+        <StyledDayProgressBar progress={getAppointmentProgress()} />
+      ) : undefined}
     </StyledAppointmentButton>
   );
 }

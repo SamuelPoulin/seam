@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import React, { useContext, useEffect, useState } from "react";
+import styled from "styled-components";
 
-import StyledH1 from '../../../../../shared/h1';
-import SelectedMonthAppointmentContext from '../../../../../shared/selected-month-appointments-context';
-import { Appointment } from '../../../../../../models/appointment';
-import AppointmentButton from './appointment-button';
-import { Provider } from '../../../../../../models/provider';
+import StyledH1 from "../../../../../shared/h1";
+import SelectedMonthAppointmentContext from "../../../../../shared/selected-month-appointments-context";
+import { Appointment } from "../../../../../../models/appointment";
+import AppointmentButton from "./appointment-button";
+import { Provider } from "../../../../../../models/provider";
 
 const StyledDay = styled.div`
   grid-area: day;
@@ -28,10 +28,12 @@ const StyledDayTitleContainer = styled.div`
   align-items: center;
 
   width: 100%;
+  height: 40px;
 `;
 
 const StyledAppointmentList = styled.div`
   display: flex;
+  align-items: center;
 
   width: 100%;
   overflow-x: scroll;
@@ -41,7 +43,8 @@ const StyledAppointmentList = styled.div`
 
 function DaySection(): JSX.Element {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const selectedMonthAppointments = useContext(SelectedMonthAppointmentContext).selectedMonthAppointments;
+  const selectedMonthAppointments = useContext(SelectedMonthAppointmentContext)
+    .selectedMonthAppointments;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,46 +53,63 @@ function DaySection(): JSX.Element {
     return () => clearInterval(interval);
   }, []);
 
-  const testProvider: Provider = { id: 1, name: 'Sam', pictureid: 1, description: '' };
+  const testProvider: Provider = {
+    id: 1,
+    name: "Sam",
+    pictureid: 1,
+    description: "",
+  };
   const testAppointment: Appointment = {
     provider: testProvider,
-    startTime: new Date('2020-08-06 11:57:00'),
-    endTime: new Date('2020-08-06 11:57:15')
+    startTime: new Date("2020-08-06 11:57:00"),
+    endTime: new Date("2020-08-06 11:57:15"),
   };
 
   const testAppointment2: Appointment = {
     provider: testProvider,
-    startTime: new Date('2020-08-06 11:57:15'),
-    endTime: new Date('2020-08-06 11:57:30')
+    startTime: new Date("2020-08-06 11:57:15"),
+    endTime: new Date("2020-08-06 11:57:30"),
   };
 
   const testAppointment3: Appointment = {
     provider: testProvider,
-    startTime: new Date('2020-08-06 11:57:30'),
-    endTime: new Date('2020-08-06 11:57:45')
+    startTime: new Date("2020-08-06 11:57:30"),
+    endTime: new Date("2020-08-06 11:57:45"),
   };
 
   const testAppointment4: Appointment = {
     provider: testProvider,
-    startTime: new Date('2020-08-06 11:57:45'),
-    endTime: new Date('2020-08-06 11:58:00')
+    startTime: new Date("2020-08-06 11:57:45"),
+    endTime: new Date("2020-08-06 11:58:00"),
   };
 
   const testAppointment5: Appointment = {
     provider: testProvider,
-    startTime: new Date('2020-08-06 11:58:00'),
-    endTime: new Date('2020-08-06 11:58:30')
+    startTime: new Date("2020-08-06 11:58:00"),
+    endTime: new Date("2020-08-06 11:58:30"),
   };
 
   const appointmentButtonComponents: JSX.Element[] = [];
-  appointmentButtonComponents.push(<AppointmentButton appointment={testAppointment} />);
-  appointmentButtonComponents.push(<AppointmentButton appointment={testAppointment2} />);
-  appointmentButtonComponents.push(<AppointmentButton appointment={testAppointment3} />);
-  appointmentButtonComponents.push(<AppointmentButton appointment={testAppointment4} />);
-  appointmentButtonComponents.push(<AppointmentButton appointment={testAppointment5} />);
+  appointmentButtonComponents.push(
+    <AppointmentButton appointment={testAppointment} />
+  );
+  appointmentButtonComponents.push(
+    <AppointmentButton appointment={testAppointment2} />
+  );
+  appointmentButtonComponents.push(
+    <AppointmentButton appointment={testAppointment3} />
+  );
+  appointmentButtonComponents.push(
+    <AppointmentButton appointment={testAppointment4} />
+  );
+  appointmentButtonComponents.push(
+    <AppointmentButton appointment={testAppointment5} />
+  );
 
   for (let appointment of selectedMonthAppointments) {
-    appointmentButtonComponents.push(<AppointmentButton appointment={testAppointment} />)
+    appointmentButtonComponents.push(
+      <AppointmentButton appointment={testAppointment} />
+    );
   }
 
   return (
