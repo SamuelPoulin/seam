@@ -10,8 +10,8 @@ const atob: any = require('atob');
 export class SignUpService {
 
   constructor(
-        @inject(Types.DatabaseService) private databaseService: DatabaseService
-  ) {}
+    @inject(Types.DatabaseService) private databaseService: DatabaseService
+  ) { }
 
   public async createUser(auth: string, user: User): Promise<number> {
     return new Promise<number>((resolve, reject) => {
@@ -26,18 +26,11 @@ export class SignUpService {
         } else {
           user.password = hash;
           this.databaseService.pool.query(
-            'CALL insertUser(?,?,?,?,?,?,?,?,?,?)',
+            'CALL insertUser(?,?,?)',
             [
               user.username,
               user.email,
-              user.password,
-              user.birthday,
-              user.first_name,
-              user.last_name,
-              user.biography,
-              user.collegeid,
-              user.graduate,
-              user.business
+              user.password
             ],
             (err, rows) => {
               if (err || !rows[0][0]) {

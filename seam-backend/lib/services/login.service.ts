@@ -26,7 +26,6 @@ export class LoginService {
             if (err || !rows[0]) {
               reject(err);
             } else {
-              console.log(rows);
               bcrypt.compare(
                 password,
                 rows[0].password,

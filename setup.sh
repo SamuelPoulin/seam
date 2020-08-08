@@ -96,6 +96,11 @@ if ! mysql --database=$db --user=$dbuser --password=$dbpassword --port=$dbport -
   exit 1
 fi
 
+if ! mysql --database=$db --user=$dbuser --password=$dbpassword --port=$dbport --host=$dbhost < seam-database/functions.sql; then
+  echo -e "${RED}Could not create a database named seam. Make sure you have given the required privileges to your user and that the database does not already exist.\n\n${NC}Exiting..."
+  exit 1
+fi
+
 
 echo -e "\n${GREEN}==> Building Seam Dashboard from source...${NC}"
 

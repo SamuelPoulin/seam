@@ -9,7 +9,7 @@ export class SignUpController {
   router: express.Router;
 
   constructor(
-      @inject(Types.SignUpService) private signUpService: SignUpService
+    @inject(Types.SignUpService) private signUpService: SignUpService
   ) {
     this.router = express.Router();
 

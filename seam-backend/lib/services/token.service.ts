@@ -33,7 +33,6 @@ export class TokenService {
           { expiresIn: '24h', algorithm: 'RS256' },
           (err, token) => {
             if (err) {
-              console.log(err);
               reject(err);
             } else {
               resolve(token);
