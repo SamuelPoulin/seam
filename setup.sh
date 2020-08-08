@@ -65,8 +65,9 @@ fi
 ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key -N "" > /dev/null 2>&1
 openssl rsa -in jwtRS256.key -pubout -outform PEM -out jwtRS256.key.pub > /dev/null 2>&1
 
-privatejwt="\""$(cat jwtRS256.key)"\""
-publicjwt="\""$(cat jwtRS256.key.pub)"\""
+privatejwt="\"""$(sed ':a;N;$!ba;s/\n/\\n/g' jwtRS256.key)""\""
+publicjwt="\""$(sed ':a;N;$!ba;s/\n/\\n/g' jwtRS256.key.pub)"\""
+
 
 rm jwtRS256.key jwtRS256.key.pub
 
@@ -75,8 +76,9 @@ echo MYSQL_PORT=$dbport >> seam-backend/.env
 echo MYSQL_USER=$dbuser >> seam-backend/.env
 echo MYSQL_PASSWORD=$dbpassword >> seam-backend/.env
 echo MYSQL_DATABASE=$db >> seam-backend/.env
-echo JWT_PRIVATE_KEY=$privatejwt >> seam-backend/.env
-echo JWT_PUBLIC_KEY=$publicjwt >> seam-backend/.env
+echo JWT_PRIVATE_KEY="$privatejwt" >> seam-backend/.env
+echo JWT_PUBLIC_KEY="$publicjwt" >> seam-backend/.env
+echo SEAM_CONTENT_PATH=/seam/content/ >> seam-backend/.env
 
 echo -e "Configuration file saved as seam-backend/.env\n"
 

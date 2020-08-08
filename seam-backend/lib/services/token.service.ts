@@ -28,11 +28,12 @@ export class TokenService {
     return new Promise<string>((resolve, reject) => {
       if (process.env.JWT_PRIVATE_KEY) {
         jwt.sign(
-          {userid: userid},
+          { userid: userid },
           process.env.JWT_PRIVATE_KEY,
-          {expiresIn: '24h', algorithm: 'RS256'},
+          { expiresIn: '24h', algorithm: 'RS256' },
           (err, token) => {
             if (err) {
+              console.log(err);
               reject(err);
             } else {
               resolve(token);

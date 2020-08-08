@@ -6,23 +6,23 @@ import Types from '../inversify/types';
 @injectable()
 export class ContentService {
   constructor(
-        @inject(Types.DatabaseService) private databaseService: DatabaseService
-  ) {}
+    @inject(Types.DatabaseService) private databaseService: DatabaseService
+  ) { }
 
   private getVideoPath(filename: string, extension: string): string {
-    return process.env.TRENDIT_CONTENT_PATH +
-    'video/' +
-    filename +
-    '.' +
-    extension;
+    return process.env.SEAM_CONTENT_PATH +
+      'video/' +
+      filename +
+      '.' +
+      extension;
   }
 
   private getPicturePath(filename: string, extension: string): string {
-    return process.env.TRENDIT_CONTENT_PATH +
-    'picture/' +
-    filename +
-    '.' +
-    extension;
+    return process.env.SEAM_CONTENT_PATH +
+      'picture/' +
+      filename +
+      '.' +
+      extension;
   }
 
   public async getContentById(contentid: number): Promise<string> {

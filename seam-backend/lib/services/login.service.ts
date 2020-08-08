@@ -9,8 +9,8 @@ const atob: any = require('atob');
 export class LoginService {
 
   constructor(
-        @inject(Types.DatabaseService) private databaseService: DatabaseService
-  ) {}
+    @inject(Types.DatabaseService) private databaseService: DatabaseService
+  ) { }
 
   public async authenticate(authorization: string): Promise<number> {
     return new Promise<number>((resolve, reject) => {
@@ -26,6 +26,7 @@ export class LoginService {
             if (err || !rows[0]) {
               reject(err);
             } else {
+              console.log(rows);
               bcrypt.compare(
                 password,
                 rows[0].password,
