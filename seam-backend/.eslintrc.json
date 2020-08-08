@@ -1,0 +1,76 @@
+{
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "no-unused-vars": "off",
+        "no-trailing-spaces": "error",
+        "no-multiple-empty-lines": "error",
+        "no-multi-spaces": "error",
+        "arrow-spacing": "error",
+        "@typescript-eslint/type-annotation-spacing": "error",
+        "keyword-spacing": "error",
+        "space-before-blocks": "error",
+        "max-len": "error",
+        "sort-imports": "error",
+        "comma-spacing": "error",
+        "comma-dangle": "error",
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "@typescript-eslint/no-unused-vars": [
+            "error"
+        ],
+        "import/newline-after-import": [
+            "error",
+            {
+                "count": 1
+            }
+        ],
+        "eol-last": [
+            "error",
+            "always"
+        ],
+        "no-empty-function": [
+            "error",
+            {
+                "allow": [
+                    "constructors"
+                ]
+            }
+        ]
+    }
+}

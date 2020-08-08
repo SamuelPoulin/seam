@@ -26,7 +26,7 @@ const StyledAppointmentTimeButton = styled(StyledButton)`
 
 const StyledDayProgressBar = styled.div<CustomProps>`
   position: absolute;
-  left: ${(props: CustomProps) => props.progress * 170}px;
+  left: ${(props: CustomProps) => props.progress * 136}px;
   display: flex;
 
   width: 4px;

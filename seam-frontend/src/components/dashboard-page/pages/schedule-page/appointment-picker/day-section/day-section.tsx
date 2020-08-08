@@ -61,32 +61,32 @@ function DaySection(): JSX.Element {
   };
   const testAppointment: Appointment = {
     provider: testProvider,
-    startTime: new Date("2020-08-06 11:57:00"),
-    endTime: new Date("2020-08-06 11:57:15"),
+    startTime: new Date("2020-08-08 13:00:00"),
+    endTime: new Date("2020-08-08 13:00:15"),
   };
 
   const testAppointment2: Appointment = {
     provider: testProvider,
-    startTime: new Date("2020-08-06 11:57:15"),
-    endTime: new Date("2020-08-06 11:57:30"),
+    startTime: new Date("2020-08-08 13:00:15"),
+    endTime: new Date("2020-08-08 13:00:30"),
   };
 
   const testAppointment3: Appointment = {
     provider: testProvider,
-    startTime: new Date("2020-08-06 11:57:30"),
-    endTime: new Date("2020-08-06 11:57:45"),
+    startTime: new Date("2020-08-08 13:00:30"),
+    endTime: new Date("2020-08-08 13:00:45"),
   };
 
   const testAppointment4: Appointment = {
     provider: testProvider,
-    startTime: new Date("2020-08-06 11:57:45"),
-    endTime: new Date("2020-08-06 11:58:00"),
+    startTime: new Date("2020-08-08 13:00:45"),
+    endTime: new Date("2020-08-08 13:01:00"),
   };
 
   const testAppointment5: Appointment = {
     provider: testProvider,
-    startTime: new Date("2020-08-06 11:58:00"),
-    endTime: new Date("2020-08-06 11:58:30"),
+    startTime: new Date("2020-08-08 13:01:00"),
+    endTime: new Date("2020-08-08 13:01:30"),
   };
 
   const appointmentButtonComponents: JSX.Element[] = [];
