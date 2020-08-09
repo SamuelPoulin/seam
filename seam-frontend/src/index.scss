@@ -10,6 +10,10 @@
     font-family: 'Roboto Bold';
     src: local('Roboto Bold'), url(./assets/fonts/Roboto-Bold.ttf);
 }
+@font-face {
+    font-family: 'Jaldi Bold';
+    src: local('Jaldi Bold'), url(./assets/fonts/Jaldi-Bold.ttf);
+}
 
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */
