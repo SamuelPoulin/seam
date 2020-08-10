@@ -21,7 +21,7 @@ const StyledInput = styled.input`
   margin-right: 10px;
 
   &:checked, &:checked:hover {
-    background-color: ${(props) => props.theme.colors.onSecondary};
+    background-color: ${(props) => props.theme.colors.accent};
   }
 
   &:hover {

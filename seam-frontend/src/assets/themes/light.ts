@@ -18,6 +18,7 @@ export const lightTheme: DefaultTheme = {
 
     accent: "#3282B8",
     onAccent: "",
-    hoverAccent: "",
+    hoverAccent: "#2f7aac",
+    clickedAccent: "#2C72A0",
   },
 };

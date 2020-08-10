@@ -5,7 +5,8 @@ import logo from '../../assets/images/logo.png';
 import StyledH1 from '../shared/h1';
 import Checkbox from '../shared/checkbox';
 import Button from '../shared/button';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const StyledLoginPage = styled.div`
   display: flex;
@@ -43,15 +44,21 @@ const StyledLogInSection = styled.div`
   align-items: center;
   
   & > Button {
-    width: 100px;
-    height: 50px;
-    background-color: ${(props) => props.theme.colors.onBackground};
+    width: 90px;
+    height: 40px;
+    background-color: ${(props) => props.theme.colors.accent};
     color: ${(props) => props.theme.colors.background};
     font-family: 'Roboto Bold';
-    font-size: 24px;
-    
+    font-size: 20px;
+
+    transition: .4s; 
+
     &:hover {
-      background-color: ${(props) => props.theme.colors.onBackground}; 
+      background-color: ${(props) => props.theme.colors.hoverAccent}; 
+    }
+
+    &:active {
+      background-color: ${(props) => props.theme.colors.clickedAccent};
     }
   }
 `;
@@ -84,22 +91,16 @@ const StyledLogo = styled.img`
 function LoginPage(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
-  function handleAuthentication(): Promise<void> {
+  function handleAuthentication(): void {
     const token = Buffer.from(`${email}:${password}`, 'utf8').toString('base64')
 
-    return new Promise<void>((resolve, reject) => {
-      axios.post('http://localhost/api/login', {}, {
-        headers: {
-          'Authorization': `Basic ${token}`
-        }
-      }).then((response) => {
-        console.log(response);
-        resolve();
-      }).catch((err) => {
-        reject(err);
-      });
-    });
+    authenticate(token).then((response) => {
+
+    }).catch((err) => {
+      console.log(err);
+    })
   }
 
   return (
@@ -120,6 +121,21 @@ function LoginPage(): JSX.Element {
       </StyledFormContainer>
     </StyledLoginPage>
   );
+}
+
+function authenticate(token: string): Promise<string> {
+  return new Promise<string>((resolve, reject) => {
+    axios.post('http://localhost/api/login', {}, {
+      headers: {
+        'Authorization': `Basic ${token}`
+      }
+    }).then((response) => {
+      resolve(response.data);
+    }).catch((err) => {
+      reject(err);
+    });
+  });
+
 }
 
 export default LoginPage;

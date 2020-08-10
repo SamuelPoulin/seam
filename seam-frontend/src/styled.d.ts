@@ -20,6 +20,7 @@ declare module 'styled-components' {
       accent: string;
       onAccent: string;
       hoverAccent: string;
+      clickedAccent: string;
     };
   }
 }

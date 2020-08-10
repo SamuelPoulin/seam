@@ -19,5 +19,6 @@ export const darkTheme: DefaultTheme = {
         accent: '',
         onAccent: '',
         hoverAccent: '',
+        clickedAccent: '',
     },
 };
