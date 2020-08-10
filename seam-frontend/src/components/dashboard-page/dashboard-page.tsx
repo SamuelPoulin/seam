@@ -8,7 +8,8 @@ import StatisticsPage from './pages/statistics-page';
 import WidgetPage from './pages/widget-page';
 import ExtensionsPage from './pages/extensions-page';
 import SettingsPage from './pages/settings-page';
-import { Route } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
+import { useUser } from '../../services/user.service';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -22,6 +23,13 @@ const StyledActivePage = styled.div`
 
 function DashboardPage({ match }: any): JSX.Element {
     document.title = 'Seam Dashboard';
+
+    const user = useUser();
+    const history = useHistory();
+
+    if (!user.token) {
+        history.push('/');
+    }
 
     return (
         <>

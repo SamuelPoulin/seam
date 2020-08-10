@@ -11,19 +11,24 @@ import NotFoundPage from './components/not-found-page/not-found-page';
 import SignUpPage from './components/signup-page/signup-page';
 import ForgotPage from './components/forgot-page/forgot-page';
 
+import { APIProvider } from './services/api.service';
+import { UserProvider } from './services/user.service';
+
 function App(): JSX.Element {
     return (
-        <>
-            <Router>
-                <Switch>
-                    <Route exact path="/" component={LoginPage} />
-                    <Route path="/dashboard" render={DashboardPage} />
-                    <Route path="/signup" render={SignUpPage} />
-                    <Route path="/forgot" render={ForgotPage} />
-                    <Route render={NotFoundPage} />
-                </Switch>
-            </Router>
-        </>
+        <Router>
+            <Switch>
+                <APIProvider>
+                    <UserProvider>
+                        <Route exact path="/" component={LoginPage} />
+                        <Route path="/dashboard" component={DashboardPage} />
+                        <Route path="/signup" render={SignUpPage} />
+                        <Route path="/forgot" render={ForgotPage} />
+                    </UserProvider>
+                </APIProvider>
+                <Route render={NotFoundPage} />
+            </Switch>
+        </Router>
     );
 }
 

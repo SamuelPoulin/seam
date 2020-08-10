@@ -17,6 +17,10 @@ export const StyledButton = styled.button`
   &:hover {
     background-color: ${(props) => props.theme.colors.hoverSecondary};
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export interface ButtonProps {

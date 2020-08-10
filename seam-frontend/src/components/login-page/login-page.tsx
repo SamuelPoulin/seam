@@ -5,8 +5,9 @@ import logo from '../../assets/images/logo.png';
 import StyledH1 from '../shared/h1';
 import Checkbox from '../shared/checkbox';
 import Button from '../shared/button';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { useAPI } from '../../services/api.service';
+import { useUser } from '../../services/user.service';
 
 const StyledLoginPage = styled.div`
   display: flex;
@@ -91,16 +92,18 @@ const StyledLogo = styled.img`
 function LoginPage(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const api = useAPI();
+  const user = useUser();
   const history = useHistory();
 
   function handleAuthentication(): void {
-    const token = Buffer.from(`${email}:${password}`, 'utf8').toString('base64')
-
-    authenticate(token).then((response) => {
-
+    api.logIn(email, password).then((token) => {
+      user.setToken(token);
+      history.push('/dashboard');
     }).catch((err) => {
       console.log(err);
-    })
+    });
   }
 
   return (
@@ -112,7 +115,7 @@ function LoginPage(): JSX.Element {
         <InputField value={password} onChange={(e: any) => setPassword(e.target.value)} label={'Password'} type={'password'} />
         <StyledLogInSection>
           <Checkbox label={'Keep me signed in'} />
-          <Button onClick={handleAuthentication}><>{'Log in'}</></Button>
+          <Button onClick={handleAuthentication}><>Log in</></Button>
         </StyledLogInSection>
         <StyledHelpSection>
           <a href={'forgot'}>I forgot my password</a>
@@ -121,21 +124,6 @@ function LoginPage(): JSX.Element {
       </StyledFormContainer>
     </StyledLoginPage>
   );
-}
-
-function authenticate(token: string): Promise<string> {
-  return new Promise<string>((resolve, reject) => {
-    axios.post('http://localhost/api/login', {}, {
-      headers: {
-        'Authorization': `Basic ${token}`
-      }
-    }).then((response) => {
-      resolve(response.data);
-    }).catch((err) => {
-      reject(err);
-    });
-  });
-
 }
 
 export default LoginPage;
