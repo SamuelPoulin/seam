@@ -33,14 +33,17 @@ const StyledFormContainer = styled.div`
   width: 100%;
   max-width: 400px;
 
-  & > div {
-    margin-top: 20px;
+  form {
+    width: 100%;
+    > div {
+      margin-top: 20px;
+    }
   }
 `;
 
 const StyledLogInSection = styled.div`
   display: flex;
-  width: 95%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   
@@ -101,7 +104,9 @@ function LoginPage(): JSX.Element {
     history.push('/dashboard');
   }
 
-  function handleAuthentication(): void {
+  function handleAuthentication(e: any): void {
+    e.preventDefault();
+
     api.logIn(email, password).then((token) => {
       user.setToken(token);
       history.push('/dashboard');
@@ -115,12 +120,14 @@ function LoginPage(): JSX.Element {
       <StyledFormContainer>
         <StyledLogo src={logo} />
         <StyledText>Log in to seam</StyledText>
-        <InputField value={email} onChange={(e: any) => setEmail(e.target.value)} label={'Email or username'} type={'username'} />
-        <InputField value={password} onChange={(e: any) => setPassword(e.target.value)} label={'Password'} type={'password'} />
-        <StyledLogInSection>
-          <Checkbox label={'Keep me signed in'} />
-          <Button onClick={handleAuthentication}><>Log in</></Button>
-        </StyledLogInSection>
+        <form onSubmit={handleAuthentication}>
+          <InputField value={email} onChange={(e: any) => setEmail(e.target.value)} label={'Email or username'} type={'text'} />
+          <InputField value={password} onChange={(e: any) => setPassword(e.target.value)} label={'Password'} type={'password'} />
+          <StyledLogInSection>
+            <Checkbox label={'Keep me signed in'} />
+            <Button><>Log in</></Button>
+          </StyledLogInSection>
+        </form>
         <StyledHelpSection>
           <a href={'forgot'}>I forgot my password</a>
           <a href={'signup'}>Create an account</a>

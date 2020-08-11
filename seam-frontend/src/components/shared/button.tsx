@@ -26,10 +26,11 @@ export const StyledButton = styled.button`
 export interface ButtonProps {
   children?: JSX.Element | JSX.Element[];
   onClick?: () => void;
+  type?: any;
 }
 
-function Button({ children, onClick }: ButtonProps): JSX.Element {
-  return <StyledButton onClick={onClick}>{children}</StyledButton>;
+function Button({ children, onClick, type }: ButtonProps): JSX.Element {
+  return <StyledButton type={type} onClick={onClick}>{children}</StyledButton>;
 }
 
 export default Button;

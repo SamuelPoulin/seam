@@ -55,7 +55,9 @@ const StyledContainer = styled.div`
 
 export interface InputFieldProps {
   label: string;
-  type: string; onChange?: any;
+  type: string;
+  onChange?: any;
+  onSubmit?: any;
   value?: any;
 }
 
@@ -63,7 +65,7 @@ function InputField(props: InputFieldProps): JSX.Element {
   return (
     <StyledInputField>
       <StyledContainer>
-        <StyledInput onChange={props.onChange} value={props.value} id={props.type} type={props.type}></StyledInput>
+        <StyledInput onSubmit={props.onSubmit} onChange={props.onChange} value={props.value} id={props.type} type={props.type}></StyledInput>
         <StyledLabel htmlFor={props.type}>{props.label}</StyledLabel>
       </StyledContainer>
     </StyledInputField>
