@@ -43,12 +43,14 @@ const StyledFormContainer = styled.div`
 
 const StyledLogInSection = styled.div`
   display: flex;
+  height: 90px;
+  flex-direction: column;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   
   & > Button {
-    width: 90px;
+    width: 100%;
     height: 40px;
     background-color: ${(props) => props.theme.colors.accent};
     color: ${(props) => props.theme.colors.background};
@@ -63,6 +65,10 @@ const StyledLogInSection = styled.div`
 
     &:active {
       background-color: ${(props) => props.theme.colors.clickedAccent};
+    }
+
+    &:focus {
+      box-shadow: 0px 0px 0px 3px ${(props) => props.theme.colors.clickedAccent + 80}; 
     }
   }
 `;
