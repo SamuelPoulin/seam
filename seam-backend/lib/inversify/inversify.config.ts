@@ -1,6 +1,8 @@
 import 'reflect-metadata';
 import { APIController } from '../controllers/api.controller';
 import { Application } from '../app';
+import { AppointmentsController } from '../controllers/appointments.controller';
+import { AppointmentsService } from '../services/appointments.service';
 import { Container } from 'inversify';
 import { ContentController } from '../controllers/content.controller';
 import { ContentService } from '../services/content.service';
@@ -32,6 +34,8 @@ export const containerBootstrapper: () => Promise<Container> = async () => {
   container.bind(Types.ContentService).to(ContentService);
   container.bind(Types.SignUpController).to(SignUpController);
   container.bind(Types.SignUpService).to(SignUpService);
+  container.bind(Types.AppointmentsController).to(AppointmentsController);
+  container.bind(Types.AppointmentsService).to(AppointmentsService);
 
   return container;
 };

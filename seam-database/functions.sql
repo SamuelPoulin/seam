@@ -11,3 +11,28 @@ BEGIN
 END //
 
 DELIMITER ;
+
+
+DELIMITER //
+
+CREATE PROCEDURE getAppointmentsByUserId (
+  IN uid BIGINT UNSIGNED
+)
+BEGIN
+  SELECT * FROM appointment WHERE providerid = (SELECT id FROM provider WHERE userid = uid);
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE getMonthAppointmentsByUserId (
+  IN uid BIGINT UNSIGNED,
+  IN year INT UNSIGNED,
+  IN month INT UNSIGNED
+)
+BEGIN
+  SELECT * FROM appointment WHERE providerid = (SELECT id FROM provider WHERE userid = uid) AND YEAR(startTime) = year AND MONTH(startTime) = month;
+END //
+
+DELIMITER ;

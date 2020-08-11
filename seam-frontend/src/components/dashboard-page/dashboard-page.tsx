@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import DashboardTopBar from './dashboard-top-bar';
@@ -19,10 +19,13 @@ const StyledContainer = styled.div`
 
 const StyledActivePage = styled.div`
   margin-left: 104px;
+  width: 100%;
 `;
 
 function DashboardPage({ match }: any): JSX.Element {
-    document.title = 'Seam Dashboard';
+    useEffect(() => {
+        document.title = 'Seam Dashboard';
+    }, [])
 
     const user = useUser();
     const history = useHistory();

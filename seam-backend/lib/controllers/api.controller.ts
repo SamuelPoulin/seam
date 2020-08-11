@@ -5,6 +5,7 @@ import { LoginController } from './login.controller';
 import { SignUpController } from './signup.controller';
 import Types from '../inversify/types';
 import { UsersController } from './users.controller';
+import { AppointmentsController } from './appointments.controller';
 
 @injectable()
 export class APIController {
@@ -16,7 +17,10 @@ export class APIController {
     @inject(Types.UsersController) private usersController: UsersController,
     @inject(
       Types.ContentController
-    ) private contentController: ContentController
+    ) private contentController: ContentController,
+    @inject(
+      Types.AppointmentsController
+    ) private appointmentsController: AppointmentsController
   ) {
     this.router = express.Router();
 
@@ -28,5 +32,6 @@ export class APIController {
     this.router.use('/signup', this.signUpController.router);
     this.router.use('/users', this.usersController.router);
     this.router.use('/content', this.contentController.router);
+    this.router.use('/appointments', this.appointmentsController.router);
   }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import DaySection from './day-section/day-section';
 import AppointmentSection from './appointment-section';
+import { useSelectedAppointment } from '../../../../../services/selected-appointment.service';
 
 const StyledAppointmentPicker = styled.div`
   display: grid;
@@ -23,9 +24,11 @@ const StyledAppointmentPicker = styled.div`
 `;
 
 function AppointmentPicker(): JSX.Element {
+  const selectedAppointment = useSelectedAppointment().selectedAppointment;
+
   return (
     <StyledAppointmentPicker>
-      <AppointmentSection />
+      {selectedAppointment ? <AppointmentSection /> : undefined}
       <DaySection />
     </StyledAppointmentPicker>
   );

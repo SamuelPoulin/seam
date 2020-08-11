@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import MonthPicker from './month-picker';
 import DayPicker from './day-picker';
 import AppointmentPicker from './appointment-picker/appointment-picker';
-import SelectedDateContext from '../../../shared/selected-date-context';
+import { MonthAppointmentsProvider } from '../../../../services/month-appointments.service';
+import { SelectedDateProvider } from '../../../../services/selected-date.service';
+import { SelectedAppointmentProvider } from '../../../../services/selected-appointment.service';
 
 const StyledMainWrapper = styled.div`
   display: flex;
@@ -15,17 +17,18 @@ const StyledMainWrapper = styled.div`
 `;
 
 function SchedulePage(): JSX.Element {
-  const [selectedDate, setSelectedDate] = useState(new Date())
-  const value = { selectedDate, setSelectedDate };
-
   return (
-    <SelectedDateContext.Provider value={value}>
-      <StyledMainWrapper>
-        <MonthPicker />
-        <DayPicker />
-        <AppointmentPicker />
-      </StyledMainWrapper>
-    </SelectedDateContext.Provider>
+    <MonthAppointmentsProvider>
+      <SelectedDateProvider>
+        <SelectedAppointmentProvider>
+          <StyledMainWrapper>
+            <MonthPicker />
+            <DayPicker />
+            <AppointmentPicker />
+          </StyledMainWrapper>
+        </SelectedAppointmentProvider>
+      </SelectedDateProvider>
+    </ MonthAppointmentsProvider >
   );
 }
 

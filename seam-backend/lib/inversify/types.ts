@@ -11,5 +11,7 @@ export default {
   ContentController: Symbol('ContentController'),
   ContentService: Symbol('ContentService'),
   SignUpController: Symbol('SignUpController'),
-  SignUpService: Symbol('SignUpService')
+  SignUpService: Symbol('SignUpService'),
+  AppointmentsController: Symbol('AppointmentsController'),
+  AppointmentsService: Symbol('AppointmentsService')
 };

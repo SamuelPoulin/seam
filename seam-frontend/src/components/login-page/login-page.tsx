@@ -130,7 +130,7 @@ function LoginPage(): JSX.Element {
           <InputField value={email} onChange={(e: any) => setEmail(e.target.value)} label={'Email or username'} type={'text'} />
           <InputField value={password} onChange={(e: any) => setPassword(e.target.value)} label={'Password'} type={'password'} />
           <StyledLogInSection>
-            <Checkbox label={'Keep me signed in'} />
+            <Checkbox label={'Keep me logged in'} />
             <Button><>Log in</></Button>
           </StyledLogInSection>
         </form>

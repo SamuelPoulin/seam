@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import DayButton from "../../../shared/day-button";
-import SelectedDateContext from "../../../shared/selected-date-context";
+import { useMonthAppointments } from "../../../../services/month-appointments.service";
+import { useSelectedDate } from "../../../../services/selected-date.service";
 
 const StyledDayPicker = styled.div`
   display: grid;
@@ -31,23 +32,32 @@ enum Weekdays {
 }
 
 function DayPicker(): JSX.Element {
-  const selectedDate = useContext(SelectedDateContext).selectedDate;
+  const selectedDate = useSelectedDate().selectedDate;
+  const monthAppointments = useMonthAppointments().monthAppointments;
 
   const dayButtonComponents = [];
   const weekdays = Object.values(Weekdays).map((weekday) => (
-    <div>{weekday}</div>
+    <div key={weekday}>{weekday}</div>
   ));
   const firstWeekday = getFirstWeekdayOfMonth(selectedDate);
 
   for (let i = 1; i <= firstWeekday; ++i) {
-    dayButtonComponents.push(<div />);
+    dayButtonComponents.push(<div key={i} />);
   }
 
   for (let i = 1; i <= getNumberOfDaysInMonth(selectedDate); ++i) {
+    const buttonDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), i);
+    let buttonNotifications = 0;
+    monthAppointments.forEach((appointment) => {
+      if (appointment.startTime.getDate() === buttonDate.getDate()) {
+        buttonNotifications += 1;
+      }
+    })
     dayButtonComponents.push(
       <DayButton
-        date={new Date(selectedDate.getFullYear(), selectedDate.getMonth(), i)}
-        notificationCount={Math.round(Math.random())}
+        date={buttonDate}
+        notificationCount={buttonNotifications}
+        key={buttonDate.valueOf()}
       />
     );
   }

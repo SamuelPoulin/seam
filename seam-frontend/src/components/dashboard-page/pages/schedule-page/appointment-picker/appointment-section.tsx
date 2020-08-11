@@ -4,6 +4,7 @@ import styled, { ThemeContext } from "styled-components";
 import Button from "../../../../shared/button";
 import Icon from "../../../../shared/icon";
 import StyledH1 from "../../../../shared/h1";
+import { useSelectedAppointment } from "../../../../../services/selected-appointment.service";
 
 const StyledActionButtonText = styled(StyledH1)`
   font-size: 18px;
@@ -96,12 +97,7 @@ const StyledDescription = styled.div`
 
 function AppointmentSection(): JSX.Element {
   const theme = useContext(ThemeContext);
-
-  const appointmentName = "Haircut";
-  const appointmentLocation = "1337 Seam Boul.";
-  const clientName = "John Smith";
-  const clientPhone = "438-989-1099";
-  const clientEmail = "johnsmith@domain.com";
+  const selectedAppointment = useSelectedAppointment().selectedAppointment;
 
   return (
     <StyledAppointMent>
@@ -116,16 +112,14 @@ function AppointmentSection(): JSX.Element {
       </StyledTitleSectionContainer>
       <StyledDescriptionSectionContainer>
         <StyledDescriptionTitle>
-          {appointmentName}
+          {selectedAppointment?.title}
           <StyledDescriptionTitleWith>
             &nbsp;with&nbsp;
           </StyledDescriptionTitleWith>
-          {clientName}
+          {'name'}
         </StyledDescriptionTitle>
         <StyledDescription>
-          Meet with me in my fancy new office and let me give you a fresh new
-          look that fits you perfectly! If you ever need touch-ups just let me
-          know and I’ll do them for free.
+          {selectedAppointment?.description}
         </StyledDescription>
       </StyledDescriptionSectionContainer>
       <StyledContactSectionContainer>
@@ -133,19 +127,19 @@ function AppointmentSection(): JSX.Element {
           <Icon size={theme.iconSize} color={theme.colors.onBackground}>
             location
           </Icon>
-          {appointmentLocation}
+          {selectedAppointment?.location}
         </StyledContactInfoContainer>
         <StyledContactInfoContainer>
           <Icon size={theme.iconSize} color={theme.colors.onBackground}>
             phone
           </Icon>
-          {clientPhone}
+          {'phone'}
         </StyledContactInfoContainer>
         <StyledContactInfoContainer>
           <Icon size={theme.iconSize} color={theme.colors.onBackground}>
             email
           </Icon>
-          {clientEmail}
+          {'email'}
         </StyledContactInfoContainer>
       </StyledContactSectionContainer>
     </StyledAppointMent>

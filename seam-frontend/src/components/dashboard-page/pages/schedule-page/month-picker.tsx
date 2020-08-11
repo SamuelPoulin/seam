@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled, { ThemeContext } from "styled-components";
 import Button from "../../../shared/button";
 import Icon from "../../../shared/icon";
-import SelectedDateContext from "../../../shared/selected-date-context";
+import { useSelectedDate } from "../../../../services/selected-date.service";
 
 const StyledMonthPicker = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ const StyledMonthPicker = styled.div`
 `;
 
 function MonthPicker(): JSX.Element {
-  const { selectedDate, setSelectedDate } = useContext(SelectedDateContext);
+  const { selectedDate, setSelectedDate } = useSelectedDate();
   const theme = useContext(ThemeContext);
 
   function decrementMonth() {

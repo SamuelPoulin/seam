@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import StyledH1 from "../../../../../shared/h1";
-import SelectedMonthAppointmentContext from "../../../../../shared/selected-month-appointments-context";
-import { Appointment } from "../../../../../../models/appointment";
 import AppointmentButton from "./appointment-button";
-import { Provider } from "../../../../../../models/provider";
+import { useMonthAppointments } from "../../../../../../services/month-appointments.service";
+import { useSelectedDate } from "../../../../../../services/selected-date.service";
 
 const StyledDay = styled.div`
   grid-area: day;
@@ -18,7 +17,7 @@ const StyledDay = styled.div`
   overflow-x: hidden;
 
   @media (max-width: 1200px) {
-    margin-top: 25px;
+    margin: 25px 0px;
   }
 `;
 
@@ -37,14 +36,21 @@ const StyledAppointmentList = styled.div`
 
   width: 100%;
   overflow-x: auto;
+`;
 
+const StyledNoAppointmentsMessage = styled.div`
+  color: ${(props) => props.theme.colors.onBackground};
+  font-size: 18px;
+  font-family: 'Roboto Regular';
   margin: 20px 0px;
 `;
 
 function DaySection(): JSX.Element {
+  const monthAppointments = useMonthAppointments().monthAppointments;
+  const selectedDate = useSelectedDate().selectedDate;
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars 
   const [currentTime, setCurrentTime] = useState(new Date());
-  const selectedMonthAppointments = useContext(SelectedMonthAppointmentContext)
-    .selectedMonthAppointments;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -53,63 +59,14 @@ function DaySection(): JSX.Element {
     return () => clearInterval(interval);
   }, []);
 
-  const testProvider: Provider = {
-    id: 1,
-    name: "Sam",
-    pictureid: 1,
-    description: "",
-  };
-  const testAppointment: Appointment = {
-    provider: testProvider,
-    startTime: new Date("2020-08-08 13:00:00"),
-    endTime: new Date("2020-08-08 13:00:15"),
-  };
-
-  const testAppointment2: Appointment = {
-    provider: testProvider,
-    startTime: new Date("2020-08-08 13:00:15"),
-    endTime: new Date("2020-08-08 13:00:30"),
-  };
-
-  const testAppointment3: Appointment = {
-    provider: testProvider,
-    startTime: new Date("2020-08-08 13:00:30"),
-    endTime: new Date("2020-08-08 13:00:45"),
-  };
-
-  const testAppointment4: Appointment = {
-    provider: testProvider,
-    startTime: new Date("2020-08-08 13:00:45"),
-    endTime: new Date("2020-08-08 13:01:00"),
-  };
-
-  const testAppointment5: Appointment = {
-    provider: testProvider,
-    startTime: new Date("2020-08-08 13:01:00"),
-    endTime: new Date("2020-08-08 13:01:30"),
-  };
-
   const appointmentButtonComponents: JSX.Element[] = [];
-  appointmentButtonComponents.push(
-    <AppointmentButton appointment={testAppointment} />
-  );
-  appointmentButtonComponents.push(
-    <AppointmentButton appointment={testAppointment2} />
-  );
-  appointmentButtonComponents.push(
-    <AppointmentButton appointment={testAppointment3} />
-  );
-  appointmentButtonComponents.push(
-    <AppointmentButton appointment={testAppointment4} />
-  );
-  appointmentButtonComponents.push(
-    <AppointmentButton appointment={testAppointment5} />
-  );
 
-  for (let appointment of selectedMonthAppointments) {
-    appointmentButtonComponents.push(
-      <AppointmentButton appointment={testAppointment} />
-    );
+  for (let appointment of monthAppointments) {
+    if (appointment.startTime.getDate() === selectedDate.getDate()) {
+      appointmentButtonComponents.push(
+        <AppointmentButton appointment={appointment} key={appointment.id} />
+      );
+    }
   }
 
   return (
@@ -118,7 +75,11 @@ function DaySection(): JSX.Element {
         <StyledH1>Your Day</StyledH1>
       </StyledDayTitleContainer>
       <StyledAppointmentList>
-        {appointmentButtonComponents}
+        {
+          appointmentButtonComponents.length === 0
+            ? <StyledNoAppointmentsMessage>You have no appointments.</StyledNoAppointmentsMessage>
+            : appointmentButtonComponents
+        }
       </StyledAppointmentList>
     </StyledDay>
   );
