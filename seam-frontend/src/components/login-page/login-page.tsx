@@ -97,6 +97,10 @@ function LoginPage(): JSX.Element {
   const user = useUser();
   const history = useHistory();
 
+  if (user.token) {
+    history.push('/dashboard');
+  }
+
   function handleAuthentication(): void {
     api.logIn(email, password).then((token) => {
       user.setToken(token);

@@ -1,26 +1,17 @@
-import React, { useContext, createContext, useState } from 'react';
-import * as jwt from 'jsonwebtoken';
-import { UserToken } from '../models/user-token';
+import React, { useContext, createContext } from 'react';
+import { useLocalStorage } from './storage.service';
 
 const UserContext = createContext({
   token: '',
   setToken: (token: string): void => { },
-  getUserId: (): number => { return -1 }
 });
 
 export function UserProvider(props: any) {
-  const [token, setToken] = useState('');
-
-  function getUserId(): number {
-    const user = jwt.decode(token) as UserToken;
-
-    return user ? user.userid : -1;
-  }
+  const [token, setToken] = useLocalStorage('token', '');
 
   const value = {
     token: props.token || token,
     setToken: props.setToken || setToken,
-    getUserId: props.getUserId || getUserId
   };
 
   return (
