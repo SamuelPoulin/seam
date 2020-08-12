@@ -13,5 +13,7 @@ export default {
   SignUpController: Symbol('SignUpController'),
   SignUpService: Symbol('SignUpService'),
   AppointmentsController: Symbol('AppointmentsController'),
-  AppointmentsService: Symbol('AppointmentsService')
+  AppointmentsService: Symbol('AppointmentsService'),
+  CustomersController: Symbol('CustomersController'),
+  CustomersService: Symbol('CustomersService')
 };

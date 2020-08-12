@@ -1,11 +1,12 @@
 import * as express from 'express';
 import { inject, injectable } from 'inversify';
+import { AppointmentsController } from './appointments.controller';
 import { ContentController } from './content.controller';
+import { CustomersController } from './customer.controller';
 import { LoginController } from './login.controller';
 import { SignUpController } from './signup.controller';
 import Types from '../inversify/types';
 import { UsersController } from './users.controller';
-import { AppointmentsController } from './appointments.controller';
 
 @injectable()
 export class APIController {
@@ -20,7 +21,10 @@ export class APIController {
     ) private contentController: ContentController,
     @inject(
       Types.AppointmentsController
-    ) private appointmentsController: AppointmentsController
+    ) private appointmentsController: AppointmentsController,
+    @inject(
+      Types.CustomersController
+    ) private customersController: CustomersController
   ) {
     this.router = express.Router();
 
@@ -33,5 +37,6 @@ export class APIController {
     this.router.use('/users', this.usersController.router);
     this.router.use('/content', this.contentController.router);
     this.router.use('/appointments', this.appointmentsController.router);
+    this.router.use('/customers', this.customersController.router);
   }
 }

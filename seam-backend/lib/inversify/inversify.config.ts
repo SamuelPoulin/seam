@@ -6,6 +6,8 @@ import { AppointmentsService } from '../services/appointments.service';
 import { Container } from 'inversify';
 import { ContentController } from '../controllers/content.controller';
 import { ContentService } from '../services/content.service';
+import { CustomersController } from '../controllers/customer.controller';
+import { CustomersService } from '../services/customers.service';
 import { DatabaseService } from '../services/database.service';
 import { LoginController } from '../controllers/login.controller';
 import { LoginService } from '../services/login.service';
@@ -36,6 +38,8 @@ export const containerBootstrapper: () => Promise<Container> = async () => {
   container.bind(Types.SignUpService).to(SignUpService);
   container.bind(Types.AppointmentsController).to(AppointmentsController);
   container.bind(Types.AppointmentsService).to(AppointmentsService);
+  container.bind(Types.CustomersController).to(CustomersController);
+  container.bind(Types.CustomersService).to(CustomersService);
 
   return container;
 };
