@@ -98,9 +98,17 @@ const StyledLogo = styled.img`
   height: 60px;
 `;
 
+const StyledError = styled.div`
+  color: red;
+  font-family: 'Roboto Regular';
+  font-size: 18px;
+  margin-top: 20px;
+`;
+
 function LoginPage(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
 
   const api = useAPI();
   const user = useUser();
@@ -114,9 +122,11 @@ function LoginPage(): JSX.Element {
     e.preventDefault();
 
     api.logIn(email, password).then((token) => {
+      setError(false);
       user.setToken(token);
       history.push('/dashboard');
     }).catch((err) => {
+      setError(true);
       console.log(err);
     });
   }
@@ -134,6 +144,7 @@ function LoginPage(): JSX.Element {
             <Button><>Log in</></Button>
           </StyledLogInSection>
         </form>
+        {error ? <StyledError>The entered credentials are invalid.</StyledError> : undefined}
         <StyledHelpSection>
           <a href={'forgot'}>I forgot my password</a>
           <a href={'signup'}>Create an account</a>
