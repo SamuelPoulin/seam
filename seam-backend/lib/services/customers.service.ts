@@ -30,5 +30,21 @@ export class CustomersService {
           });
     });
   }
+
+  async getCustomerById(customerid: number): Promise<Customer> {
+    return new Promise<Customer>((resolve, reject) => {
+      this.databaseService.pool
+        .query(
+          'SELECT * FROM customer WHERE id = ?',
+          [customerid],
+          (err, rows) => {
+            if (err || !rows) {
+              reject(err);
+            } else {
+              resolve(rows[0]);
+            }
+          });
+    });
+  }
 }
 

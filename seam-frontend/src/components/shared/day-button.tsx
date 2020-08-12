@@ -3,9 +3,6 @@ import styled from "styled-components";
 import { StyledButton, ButtonProps } from "./button";
 import NotificationIndicator from "./notification-indicator";
 import { useSelectedDate } from "../../services/selected-date.service";
-import { useMonthAppointments } from "../../services/month-appointments.service";
-import { useSelectedAppointment } from "../../services/selected-appointment.service";
-import { Appointment } from "../../models/appointment";
 
 const StyledNotificationCounter = styled.div`
   font-family: "Roboto Regular";
@@ -48,8 +45,6 @@ export interface DayButtonProps extends ButtonProps {
 
 function DayButton({ date, notificationCount }: DayButtonProps): JSX.Element {
   const { selectedDate, setSelectedDate } = useSelectedDate();
-  const monthAppointments = useMonthAppointments().monthAppointments;
-  const setSelectedAppointment = useSelectedAppointment().setSelectedAppointment;
 
   function isSelected() {
     const firstDate = new Date(
@@ -67,10 +62,6 @@ function DayButton({ date, notificationCount }: DayButtonProps): JSX.Element {
 
   function handleButtonClick() {
     setSelectedDate(new Date(date));
-    const firstAppointment: Appointment = monthAppointments
-      .filter((appointment) => appointment.startTime.getDate() === date.getDate())
-      .sort((a, b) => a.startTime.valueOf() - b.startTime.valueOf())[0];
-    setSelectedAppointment(firstAppointment);
   }
 
   return (

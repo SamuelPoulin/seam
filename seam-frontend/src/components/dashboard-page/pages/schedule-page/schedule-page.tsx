@@ -19,15 +19,15 @@ const StyledMainWrapper = styled.div`
 function SchedulePage(): JSX.Element {
   return (
     <MonthAppointmentsProvider>
-      <SelectedDateProvider>
-        <SelectedAppointmentProvider>
+      <SelectedAppointmentProvider>
+        <SelectedDateProvider>
           <StyledMainWrapper>
             <MonthPicker />
             <DayPicker />
             <AppointmentPicker />
           </StyledMainWrapper>
-        </SelectedAppointmentProvider>
-      </SelectedDateProvider>
+        </SelectedDateProvider>
+      </SelectedAppointmentProvider>
     </ MonthAppointmentsProvider >
   );
 }

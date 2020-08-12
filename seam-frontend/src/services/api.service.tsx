@@ -1,18 +1,23 @@
 import React, { createContext, useContext } from 'react';
 import axios from 'axios';
 import { Appointment } from '../models/appointment';
+import { Customer } from '../models/customer';
 
 const APIContext = createContext({
-  logIn: (email: string, password: string): Promise<string> => { return Promise.resolve('') },
-  signUp: (): Promise<string> => { return Promise.resolve('') },
-  getMonthAppointments: (token: string, year: number, month: number): Promise<Appointment[]> => { return Promise.resolve([]) }
+  logIn: (email: string, password: string): Promise<string> => Promise.resolve(''),
+  signUp: (): Promise<string> => Promise.resolve(''),
+  getMonthAppointments: (token: string, year: number, month: number): Promise<Appointment[]> => Promise.resolve([]),
+  getCustomers: (token: string): Promise<Customer[]> => Promise.resolve([]),
+  getCustomerById: (token: string, customerid: number): Promise<Customer> => Promise.resolve({ id: -1, firstName: '', lastName: '', email: '', phoneNo: '' })
 })
 
 export function APIProvider(props: any) {
   const value = {
     logIn: props.logIn || logIn,
     signUp: props.signUp || signUp,
-    getMonthAppointments: props.getMonthAppointments || getMonthAppointments
+    getMonthAppointments: props.getMonthAppointments || getMonthAppointments,
+    getCustomers: props.getCustomers || getCustomers,
+    getCustomerById: props.getCustomerById || getCustomerById
   };
 
   return (
@@ -62,12 +67,52 @@ function getMonthAppointments(token: string, year: number, month: number): Promi
             startTime: new Date(appointment.startTime),
             endTime: new Date(appointment.endTime),
             customerid: appointment.customerid,
-          })
+          });
         }
 
         resolve(appointments);
       }).catch((err) => {
         reject(err);
+      });
+  });
+}
+
+function getCustomers(token: string, year: number, month: number): Promise<Customer[]> {
+  return new Promise<Customer[]>((resolve, reject) => {
+    axios.get(`http://localhost/api/customers?access_token=${token}`)
+      .then((response) => {
+        const customers: Customer[] = [];
+
+        for (const customer of response.data) {
+          customers.push({
+            id: customer.id,
+            firstName: customer.first_name,
+            lastName: customer.last_name,
+            email: customer.email,
+            phoneNo: customer.phone_no
+          });
+        }
+
+        resolve(customers);
+      }).catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+function getCustomerById(token: string, customerid: number): Promise<Customer> {
+  return new Promise<Customer>((resolve, reject) => {
+    axios.get(`http://localhost/api/customers/${customerid}?access_token=${token}`)
+      .then((response) => {
+        resolve({
+          id: response.data.id,
+          firstName: response.data.first_name,
+          lastName: response.data.last_name,
+          email: response.data.email,
+          phoneNo: response.data.phone_no
+        });
+      }).catch((err) => {
+        reject(err);
       })
-  })
+  });
 }

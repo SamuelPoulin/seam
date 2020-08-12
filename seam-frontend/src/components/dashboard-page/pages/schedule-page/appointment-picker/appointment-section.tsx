@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled, { ThemeContext } from "styled-components";
 
 import Button from "../../../../shared/button";
 import Icon from "../../../../shared/icon";
 import StyledH1 from "../../../../shared/h1";
 import { useSelectedAppointment } from "../../../../../services/selected-appointment.service";
+import { useAPI } from "../../../../../services/api.service";
+import { useUser } from "../../../../../services/user.service";
+import { Customer } from "../../../../../models/customer";
 
 const StyledActionButtonText = styled(StyledH1)`
   font-size: 18px;
@@ -99,6 +102,23 @@ function AppointmentSection(): JSX.Element {
   const theme = useContext(ThemeContext);
   const selectedAppointment = useSelectedAppointment().selectedAppointment;
 
+  const defaultCustomer: Customer = { id: -1, firstName: '', lastName: '', email: '', phoneNo: '' };
+  const [customer, setCustomer] = useState(defaultCustomer);
+
+  const api = useAPI();
+  const user = useUser();
+
+  useEffect(() => {
+    if (selectedAppointment?.customerid) {
+      api.getCustomerById(user.token, selectedAppointment.customerid).then((customer) => {
+        setCustomer(customer);
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedAppointment])
+
   return (
     <StyledAppointMent>
       <StyledTitleSectionContainer>
@@ -116,7 +136,7 @@ function AppointmentSection(): JSX.Element {
           <StyledDescriptionTitleWith>
             &nbsp;with&nbsp;
           </StyledDescriptionTitleWith>
-          {'name'}
+          {customer.firstName + ' ' + customer.lastName}
         </StyledDescriptionTitle>
         <StyledDescription>
           {selectedAppointment?.description}
@@ -133,13 +153,13 @@ function AppointmentSection(): JSX.Element {
           <Icon size={theme.iconSize} color={theme.colors.onBackground}>
             phone
           </Icon>
-          {'phone'}
+          {customer.phoneNo}
         </StyledContactInfoContainer>
         <StyledContactInfoContainer>
           <Icon size={theme.iconSize} color={theme.colors.onBackground}>
             email
           </Icon>
-          {'email'}
+          {customer.email}
         </StyledContactInfoContainer>
       </StyledContactSectionContainer>
     </StyledAppointMent>

@@ -26,6 +26,17 @@ DELIMITER ;
 
 DELIMITER //
 
+CREATE PROCEDURE getCustomersByUserId (
+  IN uid BIGINT UNSIGNED
+)
+BEGIN
+  SELECT * FROM customer WHERE id IN (SELECT customerid FROM appointment WHERE providerid = (SELECT id FROM provider WHERE userid = uid));
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
 CREATE PROCEDURE getMonthAppointmentsByUserId (
   IN uid BIGINT UNSIGNED,
   IN year INT UNSIGNED,

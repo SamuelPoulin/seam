@@ -43,5 +43,14 @@ export class CustomersController {
           res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
         });
     });
+
+    this.router.get('/:id', (req, res) => {
+      this.customersService.getCustomerById(Number(req.params.id))
+        .then((customer) => {
+          res.status(httpStatus.OK).json(customer);
+        }).catch(() => {
+          res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+        });
+    })
   }
 }
