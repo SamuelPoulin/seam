@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Appointment } from '../models/appointment';
 import { Customer } from '../models/customer';
 
+const API_URL = `http://${window.location.hostname}`;
+
 const APIContext = createContext({
   logIn: (email: string, password: string): Promise<string> => Promise.resolve(''),
   signUp: (): Promise<string> => Promise.resolve(''),
@@ -35,7 +37,7 @@ function logIn(email: string, password: string): Promise<string> {
   return new Promise<string>((resolve, reject) => {
     const token = Buffer.from(`${email}:${password}`, 'utf8').toString('base64')
 
-    axios.post('http://localhost/api/login', {}, {
+    axios.post(`http://${API_URL}/api/login`, {}, {
       headers: {
         'Authorization': `Basic ${token}`
       }
@@ -53,7 +55,7 @@ function signUp() {
 
 function getMonthAppointments(token: string, year: number, month: number): Promise<Appointment[]> {
   return new Promise<Appointment[]>((resolve, reject) => {
-    axios.get(`http://localhost/api/appointments/${year}/${month}?access_token=${token}`)
+    axios.get(`${API_URL}/api/appointments/${year}/${month}?access_token=${token}`)
       .then((response) => {
         const appointments: Appointment[] = [];
 
@@ -79,7 +81,7 @@ function getMonthAppointments(token: string, year: number, month: number): Promi
 
 function getCustomers(token: string, year: number, month: number): Promise<Customer[]> {
   return new Promise<Customer[]>((resolve, reject) => {
-    axios.get(`http://localhost/api/customers?access_token=${token}`)
+    axios.get(`${API_URL}/api/customers?access_token=${token}`)
       .then((response) => {
         const customers: Customer[] = [];
 
@@ -102,7 +104,7 @@ function getCustomers(token: string, year: number, month: number): Promise<Custo
 
 function getCustomerById(token: string, customerid: number): Promise<Customer> {
   return new Promise<Customer>((resolve, reject) => {
-    axios.get(`http://localhost/api/customers/${customerid}?access_token=${token}`)
+    axios.get(`${API_URL}/api/customers/${customerid}?access_token=${token}`)
       .then((response) => {
         resolve({
           id: response.data.id,

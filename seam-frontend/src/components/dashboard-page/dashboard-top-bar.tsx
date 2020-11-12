@@ -7,6 +7,7 @@ import Button from "../shared/button";
 import Icon from "../shared/icon";
 import { useUser } from "../../services/user.service";
 import { useHistory } from "react-router-dom";
+import { useMediaQuery } from "@material-ui/core";
 
 const StyledLogo = styled.img`
   height: 40px;
@@ -34,6 +35,20 @@ const StyledWrapper = styled.div`
   height: 75px;
 `;
 
+const StyledLeftSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 15px;
+  height: 100%;
+
+  Button {
+    width: 40px;
+    height: 40px;
+  }
+`;
+
 const StyledRightSection = styled.div`
   display: flex;
   align-items: center;
@@ -48,19 +63,25 @@ const StyledRightSection = styled.div`
   }
 `;
 
-const StyledLeftSection = styled.div`
+const StyledCenterSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
 
-  margin-left: 33px;
+  margin: 0px 33px;
   height: 100%;
+
+  Button {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 function DashboardTopBar(): JSX.Element {
   const theme = useContext(ThemeContext);
   const user = useUser();
   const history = useHistory();
+  const smallScreen = useMediaQuery('(min-width: 475px)');
 
   function handleLogout() {
     user.setToken('');
@@ -69,16 +90,25 @@ function DashboardTopBar(): JSX.Element {
 
   return (
     <StyledWrapper>
-      <StyledLeftSection>
+      {smallScreen ?
+        null : <StyledLeftSection>
+          <Button>
+            <Icon size={theme.iconSize} color={theme.colors.onSecondary}>menu</Icon>
+          </Button>
+        </StyledLeftSection>
+      }
+      <StyledCenterSection>
         <StyledLogo className="noselect" src={logo} alt="" />
         <StyledTypeface className="noselect" src={typeface} alt="" />
         <StyledTitle className="noselect">Dashboard</StyledTitle>
-      </StyledLeftSection>
-      <StyledRightSection>
-        <Button onClick={handleLogout}>
-          <Icon size={theme.iconSize} color={theme.colors.onBackground}>exit</Icon>
-        </Button>
-      </StyledRightSection>
+      </StyledCenterSection>
+      {smallScreen ?
+        <StyledRightSection>
+          <Button onClick={handleLogout}>
+            <Icon size={theme.iconSize} color={theme.colors.onBackground}>exit</Icon>
+          </Button>
+        </StyledRightSection> : null
+      }
     </StyledWrapper>
   );
 }

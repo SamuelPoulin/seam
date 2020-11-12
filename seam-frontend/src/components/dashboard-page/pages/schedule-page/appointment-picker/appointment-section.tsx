@@ -87,10 +87,19 @@ const StyledDescriptionTitle = styled.div`
   font-size: 24px;
 
   color: ${(props) => props.theme.colors.onBackground};
+
+  @media only screen and (max-width: 900px){
+    flex-direction: column;
+  }
 `;
 
 const StyledDescriptionTitleWith = styled(StyledDescriptionTitle)`
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.hoverSecondary};
+  margin: 0px 5px;
+
+  @media only screen and (max-width: 900px){
+    margin: 0;
+  }
 `;
 
 const StyledDescription = styled.div`
@@ -132,11 +141,15 @@ function AppointmentSection(): JSX.Element {
       </StyledTitleSectionContainer>
       <StyledDescriptionSectionContainer>
         <StyledDescriptionTitle>
-          {selectedAppointment?.title}
+          <div>
+            {selectedAppointment?.title}
+          </div>
           <StyledDescriptionTitleWith>
-            &nbsp;with&nbsp;
+            with
           </StyledDescriptionTitleWith>
-          {customer.firstName + ' ' + customer.lastName}
+          <div>
+            {customer.firstName + ' ' + customer.lastName}
+          </div>
         </StyledDescriptionTitle>
         <StyledDescription>
           {selectedAppointment?.description}

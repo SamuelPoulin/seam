@@ -11,10 +11,11 @@ import { useUser } from '../../services/user.service';
 
 const StyledLoginPage = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 
   width: 100%;
+  height: 100vh;
 `;
 
 const StyledText = styled(StyledH1)`
@@ -28,8 +29,8 @@ const StyledFormContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 100px;
 
-  margin: 150px 25px;
   width: 100%;
   max-width: 400px;
 
@@ -38,6 +39,10 @@ const StyledFormContainer = styled.div`
     > div {
       margin-top: 20px;
     }
+  }
+
+  @media only screen and (max-height: 800px) {
+    margin-bottom: 0px;
   }
 `;
 

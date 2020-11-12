@@ -20,6 +20,10 @@ const StyledContainer = styled.div`
 const StyledActivePage = styled.div`
   margin-left: 104px;
   width: 100%;
+
+  @media only screen and (max-width: 475px){
+    margin-left: 0px;
+  }
 `;
 
 function DashboardPage({ match }: any): JSX.Element {

@@ -13,6 +13,10 @@ const StyledMainWrapper = styled.div`
 
   height: calc(100vh - 75px);
   width: 104px;
+
+  @media only screen and (max-width: 475px){
+    visibility: hidden;
+  }
 `;
 
 const StyledNavBarContainer = styled.div`
