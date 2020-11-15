@@ -4,6 +4,7 @@ import styled, { ThemeContext } from "styled-components";
 import LinkButton from "../shared/link-button";
 import Icon from "../shared/icon";
 import Divider from "../shared/divider";
+import { useLocation } from "react-router-dom";
 
 const StyledMainWrapper = styled.div`
   position: fixed;
@@ -54,15 +55,16 @@ const StyledDividerContainer = styled.div`
 `;
 
 enum Pages {
-  Schedule = "schedule",
-  Statistics = "statistics",
-  Widget = "widget",
-  Extensions = "extensions",
-  Settings = "settings",
+  Schedule = "/dashboard/",
+  Statistics = "/dashboard/statistics",
+  Widget = "/dashboard/widget",
+  Extensions = "/dashboard/extensions",
+  Settings = "/dashboard/settings",
 }
 
 function DashboardNavBar(): JSX.Element {
-  const [currentPage, setCurrentPage] = useState(Pages.Schedule);
+  const location = useLocation();
+  const [currentPage, setCurrentPage] = useState(location.pathname);
   const theme = useContext(ThemeContext);
 
   function determineColor(page: string): string {
