@@ -22,7 +22,7 @@ function App(): JSX.Element {
                     <UserProvider>
                         <Route exact path="/" component={LoginPage} />
                         <Route path="/dashboard" component={DashboardPage} />
-                        <Route path="/signup" render={SignUpPage} />
+                        <Route path="/signup" component={SignUpPage} />
                         <Route path="/forgot" render={ForgotPage} />
                     </UserProvider>
                 </APIProvider>
