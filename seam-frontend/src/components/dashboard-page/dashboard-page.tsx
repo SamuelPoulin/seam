@@ -10,6 +10,7 @@ import ExtensionsPage from './pages/extensions-page';
 import SettingsPage from './pages/settings-page';
 import { Route, useHistory } from 'react-router-dom';
 import { useUser } from '../../services/user.service';
+import { useAPI } from '../../services/api.service';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -27,15 +28,23 @@ const StyledActivePage = styled.div`
 `;
 
 function DashboardPage({ match }: any): JSX.Element {
+    const user = useUser();
+    const history = useHistory();
+    const api = useAPI();
+
     useEffect(() => {
         document.title = 'Seam Dashboard';
     }, [])
 
-    const user = useUser();
-    const history = useHistory();
+    useEffect(validateToken, [])
 
-    if (!user.token) {
-        history.push('/');
+    function validateToken(): void {
+        api.tokenLogIn(user.token).then((token) => {
+            user.setToken(token);
+        }).catch((err) => {
+            user.setToken('');
+            history.push('/');
+        });
     }
 
     return (

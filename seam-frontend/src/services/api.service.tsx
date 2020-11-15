@@ -7,6 +7,7 @@ const API_URL = `http://${window.location.hostname}`;
 
 const APIContext = createContext({
   logIn: (email: string, password: string): Promise<string> => Promise.resolve(''),
+  tokenLogIn: (token: string): Promise<string> => Promise.resolve(''),
   signUp: (email: string, username: string, password: string): Promise<string> => Promise.resolve(''),
   getMonthAppointments: (token: string, year: number, month: number): Promise<Appointment[]> => Promise.resolve([]),
   getCustomers: (token: string): Promise<Customer[]> => Promise.resolve([]),
@@ -16,6 +17,7 @@ const APIContext = createContext({
 export function APIProvider(props: any) {
   const value = {
     logIn: props.logIn || logIn,
+    tokenLogIn: props.tokenLogIn || tokenLogIn,
     signUp: props.signUp || signUp,
     getMonthAppointments: props.getMonthAppointments || getMonthAppointments,
     getCustomers: props.getCustomers || getCustomers,
@@ -46,6 +48,16 @@ function logIn(email: string, password: string): Promise<string> {
     }).catch((err) => {
       reject(err);
     });
+  });
+}
+
+function tokenLogIn(token: string): Promise<string> {
+  return new Promise<string>((resolve, reject) => {
+    axios.get(`${API_URL}/api/login/token?access_token=${token}`).then((response) => {
+      resolve(response.data);
+    }).catch((err) => {
+      reject(err);
+    })
   });
 }
 
