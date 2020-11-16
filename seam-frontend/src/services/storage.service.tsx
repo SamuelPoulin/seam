@@ -18,7 +18,11 @@ export function useLocalStorage(key: string, initialValue: string) {
 
       setStoredValue(valueToStore);
 
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      if (valueToStore === '') {
+        window.localStorage.removeItem(key)
+      } else {
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      }
     } catch (error) { }
   }
 

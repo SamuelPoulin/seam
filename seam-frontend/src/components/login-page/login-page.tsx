@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import InputField from '../shared/input-field';
 import logo from '../../assets/images/logo.png';
@@ -118,6 +118,10 @@ function LoginPage(): JSX.Element {
   const api = useAPI();
   const user = useUser();
   const history = useHistory();
+
+  useEffect(() => {
+    document.title = 'Seam';
+  }, [])
 
   if (user.token) {
     history.push('/dashboard');

@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import styled, { ThemeContext } from "styled-components";
 
 import LinkButton from "../shared/link-button";
 import Icon from "../shared/icon";
 import Divider from "../shared/divider";
+import { useLocation } from "react-router-dom";
 
 const StyledMainWrapper = styled.div`
   position: fixed;
@@ -54,19 +55,19 @@ const StyledDividerContainer = styled.div`
 `;
 
 enum Pages {
-  Schedule = "schedule",
-  Statistics = "statistics",
-  Widget = "widget",
-  Extensions = "extensions",
-  Settings = "settings",
+  Schedule = "dashboard",
+  Statistics = "dashboardstatistics",
+  Widget = "dashboardwidget",
+  Extensions = "dashboard/extensions",
+  Settings = "dashboardsettings",
 }
 
 function DashboardNavBar(): JSX.Element {
-  const [currentPage, setCurrentPage] = useState(Pages.Schedule);
+  const location = useLocation();
   const theme = useContext(ThemeContext);
 
   function determineColor(page: string): string {
-    return currentPage === page
+    return location.pathname.replaceAll('/', '') === page
       ? theme.colors.accent
       : theme.colors.onSecondary;
   }
@@ -75,16 +76,13 @@ function DashboardNavBar(): JSX.Element {
     <StyledMainWrapper>
       <StyledNavBarContainer>
         <StyledWrapper>
-          <LinkButton to="/" onClick={() => setCurrentPage(Pages.Schedule)}>
+          <LinkButton to="">
             <Icon size={theme.iconSize} color={determineColor(Pages.Schedule)}>
               calendar
             </Icon>
           </LinkButton>
           <StyledDivider />
-          <LinkButton
-            to="/statistics"
-            onClick={() => setCurrentPage(Pages.Statistics)}
-          >
+          <LinkButton to="/statistics">
             <Icon
               size={theme.iconSize}
               color={determineColor(Pages.Statistics)}
@@ -92,14 +90,13 @@ function DashboardNavBar(): JSX.Element {
               statistics
             </Icon>
           </LinkButton>
-          <LinkButton to="/widget" onClick={() => setCurrentPage(Pages.Widget)}>
+          <LinkButton to="/widget">
             <Icon size={theme.iconSize} color={determineColor(Pages.Widget)}>
               widget
             </Icon>
           </LinkButton>
           <LinkButton
             to="/extensions"
-            onClick={() => setCurrentPage(Pages.Extensions)}
           >
             <Icon
               size={theme.iconSize}
@@ -112,7 +109,6 @@ function DashboardNavBar(): JSX.Element {
         <StyledWrapper>
           <LinkButton
             to="/settings"
-            onClick={() => setCurrentPage(Pages.Settings)}
           >
             <Icon size={theme.iconSize} color={determineColor(Pages.Settings)}>
               settings
