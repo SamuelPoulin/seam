@@ -8,7 +8,7 @@ export const lightTheme: DefaultTheme = {
     onBackground: "#0A1429",
     hoverBackground: "",
 
-    primary: "",
+    primary: "#F0F8FF",
     onPrimary: "",
     hoverPrimary: "",
 

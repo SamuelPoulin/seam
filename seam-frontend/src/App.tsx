@@ -13,6 +13,7 @@ import ForgotPage from './components/forgot-page/forgot-page';
 
 import { APIProvider } from './services/api.service';
 import { UserProvider } from './services/user.service';
+import Widget from './components/widget/widget';
 
 function App(): JSX.Element {
     return (
@@ -24,6 +25,7 @@ function App(): JSX.Element {
                         <Route path="/dashboard" component={DashboardPage} />
                         <Route path="/signup" render={SignUpPage} />
                         <Route path="/forgot" render={ForgotPage} />
+                        <Route path="/widget" render={Widget} />
                     </UserProvider>
                 </APIProvider>
                 <Route render={NotFoundPage} />

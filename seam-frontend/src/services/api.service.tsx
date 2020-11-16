@@ -37,7 +37,7 @@ function logIn(email: string, password: string): Promise<string> {
   return new Promise<string>((resolve, reject) => {
     const token = Buffer.from(`${email}:${password}`, 'utf8').toString('base64')
 
-    axios.post(`http://${API_URL}/api/login`, {}, {
+    axios.post(`${API_URL}/api/login`, {}, {
       headers: {
         'Authorization': `Basic ${token}`
       }
