@@ -1,5 +1,7 @@
 # How to embed the widget into your web page
 
+Keep in mind that in all of these examples you have to provide the correct url that links to where your widget is hosted.
+
 ## If you want it to be loaded on every page of your application
 
 The following code can be included in your index.html header tag and will load the widget on every page which is dependent on that particular index.html (which includes all of the routes of a react app, of an angular app, etc.)
@@ -19,7 +21,7 @@ _seam_widget('init');
 
 ### Using static html
 
-If your webpage is a simple html document that does not use any of the popular component-based rendering frameworks, you may simply put the following code wherever you want in your document. Keep in mind that you have to provide the correct url that links to where your widget is hosted.
+If your webpage is a simple html document that does not use any of the popular component-based rendering frameworks, you may simply put the following code wherever you want in your document. 
 
 ```
 <div id="seam-root">
