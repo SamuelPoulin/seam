@@ -1,6 +1,11 @@
-import React from 'react';
+import { h } from 'preact';
+import { Configurations } from './models';
+import Main from './layout/Main';
+import { AppContext } from './AppContext';
 
-export default function App()
-{
-    return <h1>Hello, world!</h1>
-}
+type Props = Configurations;
+export const App = ({ element, ...appSettings }: Props) => (
+    <AppContext config={appSettings} element={element}>
+        <Main />
+    </AppContext>
+);
