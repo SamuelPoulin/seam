@@ -19,6 +19,9 @@ export const AppContext = ({ children, config, element }: Props) => {
     }));
 
     const [widgetOpen, setWidgetOpen] = useState(!config.minimized);
+    const [firstOpen, setFirstOpen] = useState(!config.minimized);
+
+
     useEffect(() => {
         element?.addEventListener('widget-event', (e: CustomEvent<{ name?: string }>) => {
             switch (e.detail.name) {
