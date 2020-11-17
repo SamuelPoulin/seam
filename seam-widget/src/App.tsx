@@ -1,11 +1,15 @@
 import { h } from 'preact';
 import { Configurations } from './models';
-import Main from './layout/Main';
+import Widget from './widget';
 import { AppContext } from './AppContext';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme } from './assets/themes/light';
 
 type Props = Configurations;
 export const App = ({ element, ...appSettings }: Props) => (
-    <AppContext config={appSettings} element={element}>
-        <Main />
-    </AppContext>
+    <ThemeProvider theme={lightTheme}>
+        <AppContext config={appSettings} element={element}>
+            <Widget />
+        </AppContext>
+    </ThemeProvider>
 );

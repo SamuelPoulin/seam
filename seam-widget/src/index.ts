@@ -2,6 +2,7 @@ import { h, render } from 'preact';
 import { App } from './App';
 import loader from './loader';
 import { Configurations } from './models';
+import './index.scss';
 
 /**
  * Default configurations that are overridden by

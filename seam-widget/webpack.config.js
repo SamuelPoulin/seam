@@ -1,51 +1,24 @@
 const path = require('path');
-const webpack = require('webpack');
-var copyWebpackPlugin = require('copy-webpack-plugin');
-const bundleOutputDir = './dist';
+const buildDir = './build';
 
-module.exports = (env) => {
-  const isDevBuild = !(env && env.prod);
-
+module.exports = () => {
   return [{
+    mode: 'production',
     entry: './src/index.ts',
     output: {
       filename: 'widget.js',
-      path: path.resolve(bundleOutputDir),
+      path: path.resolve(buildDir),
     },
     devServer: {
-      contentBase: bundleOutputDir
+      contentBase: buildDir
     },
-    plugins: isDevBuild
-      ? [new webpack.SourceMapDevToolPlugin(), new copyWebpackPlugin([{ from: 'dev/' }])]
-      : [],
-    optimization: {
-      minimize: !isDevBuild
-    },
-    mode: isDevBuild ? 'development' : 'production',
     module: {
       rules: [
-        // packs SVG's discovered in url() into bundle
-        { test: /\.svg/, use: 'svg-url-loader' },
         {
-          test: /\.css$/i,
-          use: [
-            {
-              loader: 'style-loader',
-              options: { injectType: 'singletonStyleTag' }
-            },
-            {
-              // allows import CSS as modules
-              loader: 'css-loader',
-              options: {
-                modules: {
-                  // css class names format
-                  localIdentName: '[name]-[local]-[hash:base64:5]'
-                },
-                sourceMap: isDevBuild
-              }
-            }
-          ]
+          test: /\.(s*)css$/i,
+          use: ['style-loader', 'css-loader', 'sass-loader']
         },
+        { test: /\.(png|woff|woff2|eot|ttf|svg)$/, use: ['url-loader?limit=100000'] },
         // use babel-loader for TS and JS modeles,
         // starting v7 Babel babel-loader can transpile TS into JS,
         // so no need for ts-loader
@@ -90,7 +63,10 @@ module.exports = (env) => {
         }]
     },
     resolve: {
-      extensions: ['*', '.js', '.ts', '.tsx']
+      extensions: ['*', '.js', '.ts', '.tsx'],
+      alias: {
+        react: 'preact/compat',
+      }
     }
   }];
 };
