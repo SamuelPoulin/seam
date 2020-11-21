@@ -37,6 +37,7 @@ module.exports = () => {
                     },
                     // makes usage of @babel/polyfill because of IE11
                     // there is at least async functions and for..of
+                    corejs: "2",
                     useBuiltIns: 'usage'
                   }],
                   [
@@ -65,7 +66,8 @@ module.exports = () => {
     resolve: {
       extensions: ['*', '.js', '.ts', '.tsx'],
       alias: {
-        react: 'preact/compat',
+        'react': 'preact/compat',
+        'react-dom': 'preact/compat',
       }
     }
   }];
