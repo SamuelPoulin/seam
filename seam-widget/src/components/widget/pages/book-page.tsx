@@ -3,6 +3,7 @@ import { useContext } from 'preact/hooks';
 import { animated } from 'react-spring';
 import styled from 'styled-components';
 import { RouteContext } from '../../../Router';
+import Datepicker from 'react-datepicker';
 
 const StyledBookPage = styled(animated.div)`
   position: absolute;
@@ -10,6 +11,7 @@ const StyledBookPage = styled(animated.div)`
   right: 0;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 

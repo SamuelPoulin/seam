@@ -1,9 +1,10 @@
 import { h } from 'preact';
-import { useContext } from 'preact/hooks';
+import { useContext, useState } from 'preact/hooks';
 import { animated, useSpring } from 'react-spring';
 import styled from 'styled-components';
 import { GlobalsContext } from '../../AppContext';
 import { RouteContext } from '../../Router';
+import { delay } from '../shared/utils';
 
 import WidgetButton from './widget-button';
 import WidgetContent from './widget-content';
@@ -21,21 +22,30 @@ const StyledWidgetContainer = styled(animated.div)`
   right: 60px;
 `;
 
-
 const Widget = () => {
   const { widgetOpen } = useContext(GlobalsContext);
   const { route } = useContext(RouteContext);
 
+  const [firstRun, setFirstRun] = useState(true);
+
   const props = useSpring({
     from: {
-      transform: 'translateY(400%)',
+      transform: firstRun ? 'translateY(400%)' : '',
       width: '150px',
       height: '60px'
     },
-    to: {
-      transform: 'translateY(0%)',
-      width: widgetOpen ? '300px' : '150px',
-      height: widgetOpen ? route === '/book' ? '600px' : '400px' : '60px',
+    to: async (next: any) => {
+      if (firstRun) {
+        await delay(2000);
+      }
+
+      await next({ 
+        transform: firstRun ? 'translateY(0%)' : '',         
+        width: widgetOpen ? '300px' : '150px', 
+        height: widgetOpen ? route === '/book' ? '600px' : '400px' : '60px' 
+      });
+
+      setFirstRun(false);
     },
   });
 
