@@ -1,9 +1,9 @@
 import { h, createContext } from 'preact';
 import { useState } from 'preact/hooks';
 
-const DEFAULT_ROUTE = '/book';
+const DEFAULT_ROUTE = '/appointments';
 
-export const Routes = ['/book', '/done'];
+export const Routes = ['/appointments', '/book', '/done'];
 
 export const RouteContext = createContext<{ route: string, setRoute: (route: string) => void }>(
     { route: DEFAULT_ROUTE, setRoute: (_: string) => undefined });

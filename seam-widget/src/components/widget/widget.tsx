@@ -36,13 +36,13 @@ const Widget = () => {
     },
     to: async (next: any) => {
       if (firstRun) {
-        await delay(2000);
+        // await delay(2000);
       }
 
       await next({ 
         transform: firstRun ? 'translateY(0%)' : '',         
         width: widgetOpen ? '300px' : '150px', 
-        height: widgetOpen ? route === '/book' ? '600px' : '400px' : '60px' 
+        height: widgetOpen ? route === '/done' ? '400px' : '600px' : '60px' 
       });
 
       setFirstRun(false);

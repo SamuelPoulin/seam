@@ -3,6 +3,7 @@ import { useContext } from 'preact/hooks';
 import { useTransition } from 'react-spring';
 import styled from 'styled-components';
 import { RouteContext } from '../../Router';
+import AppointmentsPage from './pages/appointments-page/appointments-page';
 import BookPage from './pages/book-page';
 import DonePage from './pages/done-page';
 
@@ -28,6 +29,8 @@ const WidgetContent = () => {
 
   function getPage(route: string, props: any, key: any) {
     switch (route) {
+      case '/appointments':
+        return <AppointmentsPage style={props} key={key} />
       case '/book':
         return <BookPage style={props} key={key} />;
       case '/done':

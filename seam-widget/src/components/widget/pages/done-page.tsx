@@ -17,31 +17,6 @@ const StyledDonePage = styled(animated.div)`
   height: 400px;
 `;
 
-const StyledPreviousButton = styled.button`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-
-  height: 60px;
-  width: 150px;
-
-  background-color: ${(props) => props.theme.colors.accent};
-
-  border-radius: 15px;
-  border: none;
-  cursor: pointer;
-  margin: 0px;
-  padding: 0px;
-
-  color: ${(props) => props.theme.colors.secondary};
-  font-family: 'Jaldi';
-  font-size: 20px;
-
-  &:focus {
-    outline: none;
-  }
-`;
-
 interface DonePageProps {
   style: any;
 }
@@ -51,7 +26,7 @@ const DonePage = (props: DonePageProps) => {
 
   return (
     <StyledDonePage style={props.style}>
-      <StyledPreviousButton onClick={() => setRoute('/book')}>Previous step</StyledPreviousButton>
+      <button onClick={() => setRoute('/appointments')}>AppointmentsPage</button>
     </StyledDonePage>
   )
 }
