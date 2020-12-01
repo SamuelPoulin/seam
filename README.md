@@ -12,7 +12,7 @@
 
 # Why Seam
 
-As a competitor to other SaaS scheduling tools, Seam aims to be a complete, compromise-free solution that you can deploy on-premise or in the cloud. 
+As an alternative to other SaaS scheduling tools, Seam aims to be a complete, compromise-free solution that you can deploy on-premise or in the cloud. 
 
 ## Beautiful
 
