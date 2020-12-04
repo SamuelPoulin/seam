@@ -31,7 +31,7 @@ Plugin support allows features that haven't made it to the current release to be
 
 ## Integration
 
-Seam supports calendar integration with most popular services so that all of your devices stay up-to-date.
+Seam aims to support calendar integration with most popular services so that all of your devices stay up-to-date.
 
 - Google Calendar
 - Outlook
