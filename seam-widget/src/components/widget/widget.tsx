@@ -36,7 +36,7 @@ const Widget = () => {
     },
     to: async (next: any) => {
       if (firstRun) {
-        // await delay(2000);
+        await delay(2000);
       }
 
       await next({ 
