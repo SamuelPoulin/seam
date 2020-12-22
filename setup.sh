@@ -108,9 +108,21 @@ if [ -e seam-frontend/build/ ]; then
   rm -rf seam-frontend/build/
 fi
 
+npm install --prefix seam-frontend/ > /dev/null 2>&1
 npm run build --prefix seam-frontend/ > /dev/null 2>&1
 
 echo -e "Done.\n"
+
+echo -e "\n${GREEN}==> Building Seam Server from source...${NC}"
+
+if [ -e seam-backend/out/ ]; then
+  rm -rf seam-backend/out/
+fi
+
+npm install --prefix seam-backend/ > /dev/null 2>&1
+npm run build --prefix seam-backend/ > /dev/null 2>&1
+
+echo -e "Done. \n"
 
 echo -e "${GREEN}==> Finalizing...${NC}"
 echo -e "All done!\n"
