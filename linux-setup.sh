@@ -1,5 +1,5 @@
 #!/bin/bash
-# ./setup.sh
+./setup.sh
 
 # Copy systemd services
 cp seam-backend/seam.service /etc/systemd/system/seam.service
