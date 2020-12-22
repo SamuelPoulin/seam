@@ -1,11 +1,11 @@
 import * as express from 'express';
 import * as httpStatus from 'http-status-codes';
-import * as multer from 'multer';
 import * as path from 'path';
 import { inject, injectable } from 'inversify';
 import { ContentService } from '../services/content.service';
 import { TokenService } from '../services/token.service';
 import Types from '../inversify/types';
+import multer from 'multer';
 
 @injectable()
 export class ContentController {

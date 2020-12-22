@@ -9,7 +9,7 @@ export class Server {
   private port: number;
 
   constructor(@inject(Types.Application) private application: Application) {
-    this.port = 80;
+    this.port = 5001;
 
     this.application.app.set('port', this.port);
 

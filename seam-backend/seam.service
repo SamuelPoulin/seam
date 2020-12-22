@@ -1,0 +1,15 @@
+[Unit]
+Description=Seam scheduling server
+After=network.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+
+ProtectSystem=full
+ProtectHome=true
+
+ExecStart=/usr/bin/node /srv/seam/server/bin/www.js
+Restart=always
