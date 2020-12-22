@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Appointment } from '../models/appointment';
 import { Customer } from '../models/customer';
 
-const API_URL = `http://${window.location.hostname}`;
+const API_URL = `http://${window.location.hostname}:5001`;
 
 const APIContext = createContext({
   logIn: (email: string, password: string): Promise<string> => Promise.resolve(''),
@@ -65,6 +65,7 @@ function signUp(email: string, username: string, password: string) {
   return new Promise<string>((resolve, reject) => {
     const token = Buffer.from(`${email}:${password}`, 'utf8').toString('base64');
 
+    console.log(`${API_URL}/api/signup`);
     axios.post(`${API_URL}/api/signup`,
       {
         user: {

@@ -18,6 +18,7 @@ if ! [ -x "$(command -v npm)" ]; then
   exit 1
 fi
 
+# Configure MySQL database
 echo -e "All dependencies installed.\n\n${GREEN}==> MySQL database configuration...${NC}"
 
 printf "Host (default: 127.0.0.1): "
@@ -101,7 +102,7 @@ if ! mysql --database=$db --user=$dbuser --password=$dbpassword --port=$dbport -
   exit 1
 fi
 
-
+# Build Seam Dashboard
 echo -e "\n${GREEN}==> Building Seam Dashboard from source...${NC}"
 
 if [ -e seam-frontend/build/ ]; then
@@ -113,6 +114,7 @@ npm run build --prefix seam-frontend/ > /dev/null 2>&1
 
 echo -e "Done.\n"
 
+# Build Seam Server
 echo -e "\n${GREEN}==> Building Seam Server from source...${NC}"
 
 if [ -e seam-backend/out/ ]; then
