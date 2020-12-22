@@ -34,6 +34,7 @@ export class SignUpService {
             ],
             (err, rows) => {
               if (err || !rows[0][0]) {
+                console.log(process.env);
                 reject(err);
               } else {
                 resolve(rows[0][0].id);
