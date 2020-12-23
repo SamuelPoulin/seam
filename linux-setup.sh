@@ -3,6 +3,7 @@
 
 # Copy systemd services
 cp seam-backend/seam.service /etc/systemd/system/seam.service
+cp seam-frontend/seam-dashboard.service /etc/systemd/system/seam-dashboard.service
 
 if [ ! -d /srv/seam/server ]; then 
     mkdir -p /srv/seam/server
