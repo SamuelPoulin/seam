@@ -11,7 +11,8 @@ const APIContext = createContext({
   signUp: (email: string, username: string, password: string): Promise<string> => Promise.resolve(''),
   getMonthAppointments: (token: string, year: number, month: number): Promise<Appointment[]> => Promise.resolve([]),
   getCustomers: (token: string): Promise<Customer[]> => Promise.resolve([]),
-  getCustomerById: (token: string, customerid: number): Promise<Customer> => Promise.resolve({ id: -1, firstName: '', lastName: '', email: '', phoneNo: '' })
+  getCustomerById: (token: string, customerid: number): Promise<Customer> => Promise.resolve({ id: -1, firstName: '', lastName: '', email: '', phoneNo: '' }),
+  createAppointment: (token: string): Promise<number> => Promise.resolve(-1)
 })
 
 export function APIProvider(props: any) {
@@ -21,7 +22,8 @@ export function APIProvider(props: any) {
     signUp: props.signUp || signUp,
     getMonthAppointments: props.getMonthAppointments || getMonthAppointments,
     getCustomers: props.getCustomers || getCustomers,
-    getCustomerById: props.getCustomerById || getCustomerById
+    getCustomerById: props.getCustomerById || getCustomerById,
+    createAppointment: props.createAppointment || createAppointment
   };
 
   return (
@@ -147,5 +149,12 @@ function getCustomerById(token: string, customerid: number): Promise<Customer> {
       }).catch((err) => {
         reject(err);
       })
+  });
+}
+
+function createAppointment(token: string): Promise<number> {
+  return new Promise<number>((resolve, reject) => {
+    console.log('Creating appointment...');
+    resolve(1);
   });
 }
