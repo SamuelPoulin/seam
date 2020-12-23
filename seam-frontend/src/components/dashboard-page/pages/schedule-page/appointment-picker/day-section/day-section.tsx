@@ -202,6 +202,26 @@ function DaySection(): JSX.Element {
           </StyledDialogTitle>
           <StyledPickingSection>
             <StyledPickingTitle>
+              Appointment type
+            </StyledPickingTitle>
+          </StyledPickingSection>
+          <StyledPickingSection>
+            <StyledPickingTitle>
+              Title
+            </StyledPickingTitle>
+          </StyledPickingSection>
+          <StyledPickingSection>
+            <StyledPickingTitle>
+              Description
+            </StyledPickingTitle>
+          </StyledPickingSection>
+          <StyledPickingSection>
+            <StyledPickingTitle>
+              Location
+            </StyledPickingTitle>
+          </StyledPickingSection>
+          <StyledPickingSection>
+            <StyledPickingTitle>
               Start time
             </StyledPickingTitle>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
