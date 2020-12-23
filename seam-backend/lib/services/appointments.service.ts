@@ -34,6 +34,7 @@ export class AppointmentsService {
           ],
           (err, rows) => {
             if (err || !rows) {
+              console.log(err);
               reject(err);
             } else {
               resolve(rows[0][0].id);

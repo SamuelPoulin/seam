@@ -139,9 +139,18 @@ function DaySection(): JSX.Element {
   }
 
   function handleCreate() {
-    api.createAppointment(user.token).then((appointmentid) => {
+    api.createAppointment(
+      user.token,
+      1,
+      'Hangout with Louis',
+      'Probably play DS3',
+      'Sams Place',
+      selectedDate,
+      new Date(selectedDate.setHours(selectedDate.getHours() + 1)),
+      1
+    ).then((appointmentid) => {
       setDialogOpen(false);
-    })
+    });
   }
 
   return (

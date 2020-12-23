@@ -12,7 +12,7 @@ const APIContext = createContext({
   getMonthAppointments: (token: string, year: number, month: number): Promise<Appointment[]> => Promise.resolve([]),
   getCustomers: (token: string): Promise<Customer[]> => Promise.resolve([]),
   getCustomerById: (token: string, customerid: number): Promise<Customer> => Promise.resolve({ id: -1, firstName: '', lastName: '', email: '', phoneNo: '' }),
-  createAppointment: (token: string): Promise<number> => Promise.resolve(-1)
+  createAppointment: (token: string, providerid: number, title: string, description: string, location: string, startTime: Date, endTime: Date, customerid: number): Promise<number> => Promise.resolve(-1)
 })
 
 export function APIProvider(props: any) {
@@ -67,7 +67,6 @@ function signUp(email: string, username: string, password: string) {
   return new Promise<string>((resolve, reject) => {
     const token = Buffer.from(`${email}:${password}`, 'utf8').toString('base64');
 
-    console.log(`${API_URL}/api/signup`);
     axios.post(`${API_URL}/api/signup`,
       {
         user: {
@@ -152,9 +151,32 @@ function getCustomerById(token: string, customerid: number): Promise<Customer> {
   });
 }
 
-function createAppointment(token: string): Promise<number> {
+function createAppointment(
+  token: string,
+  providerid: number,
+  title: string,
+  description: string,
+  location: string,
+  startTime: Date,
+  endTime: Date,
+  customerid: number
+): Promise<number> {
   return new Promise<number>((resolve, reject) => {
-    console.log('Creating appointment...');
-    resolve(1);
+    axios.post(`${API_URL}/api/appointments?access_token=${token}`,
+      {
+        appointment: {
+          providerid: providerid,
+          title: title,
+          description: description,
+          location: location,
+          startTime: startTime.toISOString().replace('T', ' ').replace('Z', ''),
+          endTime: endTime.toISOString().replace('T', ' ').replace('Z', ''),
+          customerid: customerid
+        }
+      }).then((response) => {
+        resolve(response.data);
+      }).catch((err) => {
+        reject(err);
+      });
   });
 }
