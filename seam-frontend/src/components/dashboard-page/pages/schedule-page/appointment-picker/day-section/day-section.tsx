@@ -10,15 +10,31 @@ import Icon from "../../../../../shared/icon";
 import { Dialog } from "@material-ui/core";
 import { useAPI } from "../../../../../../services/api.service";
 import { useUser } from "../../../../../../services/user.service";
+import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from '@date-io/date-fns';
 
 const StyledActionButtonText = styled(StyledH1)`
   font-size: 18px;
   margin-left: 5px;
 `;
 
+const StyledPickingSection = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  margin: 10px 0px;
+`;
+
+const StyledPickingTitle = styled.div`
+  font-family: "Roboto Bold";
+  font-size: 24px;
+
+  margin-bottom: 5px;
+`;
+
 const StyledTitleText = styled.div`
   font-family: "Roboto Bold";
-  font-size: 20px;
+  font-size: 24px;
 `;
 
 const StyledButtonText = styled(StyledH1)`
@@ -143,12 +159,12 @@ function DaySection(): JSX.Element {
   function handleCreate() {
     api.createAppointment(
       user.token,
-      1,
+      3,
       'Hangout with Louis',
       'Probably play DS3',
       'Sams Place',
       new Date(),
-      new Date(new Date().getTime() + 60*1*1000),
+      new Date(new Date().getTime() + 60 * 1 * 1000),
       1
     ).then((appointmentid) => {
       setDialogOpen(false);
@@ -184,6 +200,22 @@ function DaySection(): JSX.Element {
           </Icon>
             </Button>
           </StyledDialogTitle>
+          <StyledPickingSection>
+            <StyledPickingTitle>
+              Start time
+            </StyledPickingTitle>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <DateTimePicker style={{ backgroundColor: theme.colors.secondary, borderTopLeftRadius: 5, borderTopRightRadius: 5 }} value={selectedDate} InputProps={{ style: { paddingLeft: 5, paddingRight: 5, fontSize: 20, fontFamily: 'Roboto Regular' } }} onChange={(date) => console.log(date)} showTodayButton />
+            </MuiPickersUtilsProvider>
+          </StyledPickingSection>
+          <StyledPickingSection>
+            <StyledPickingTitle>
+              End time
+            </StyledPickingTitle>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <DateTimePicker style={{ color: 'red', backgroundColor: theme.colors.secondary, borderTopLeftRadius: 5, borderTopRightRadius: 5 }} value={selectedDate} InputProps={{ style: { paddingLeft: 5, paddingRight: 5, fontSize: 20, fontFamily: 'Roboto Regular' } }} onChange={(date) => console.log(date)} showTodayButton />
+            </MuiPickersUtilsProvider>
+          </StyledPickingSection>
           <StyledDialogBottomSection>
             <Button onClick={() => handleCreate()}>
               <StyledButtonText>Create</StyledButtonText>
