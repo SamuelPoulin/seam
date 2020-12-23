@@ -5,7 +5,7 @@ import Types from '../lib/inversify/types';
 import { containerBootstrapper } from '../lib/inversify/inversify.config';
 
 dotenv.config({path: __dirname + '/../.env'});
-console.log({path: __dirname + '../.env'});
+
 containerBootstrapper().then((instance) => {
   instance.get<Server>(Types.Server).init();
 });

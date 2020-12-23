@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 
 import StyledH1 from "../../../../../shared/h1";
 import AppointmentButton from "./appointment-button";
 import { useMonthAppointments } from "../../../../../../services/month-appointments.service";
 import { useSelectedDate } from "../../../../../../services/selected-date.service";
+import Button from "../../../../../shared/button";
+import Icon from "../../../../../shared/icon";
+
+const StyledActionButtonText = styled(StyledH1)`
+  font-size: 18px;
+  margin-left: 5px;
+`;
 
 const StyledDay = styled.div`
   grid-area: day;
@@ -28,6 +35,12 @@ const StyledDayTitleContainer = styled.div`
 
   width: 100%;
   height: 40px;
+
+  Button {
+    padding: 0px 10px;
+    margin-left: 25px;
+    height: 40px;
+  }
 `;
 
 const StyledAppointmentList = styled.div`
@@ -48,6 +61,7 @@ const StyledNoAppointmentsMessage = styled.div`
 function DaySection(): JSX.Element {
   const monthAppointments = useMonthAppointments().monthAppointments;
   const selectedDate = useSelectedDate().selectedDate;
+  const theme = useTheme();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars 
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -73,6 +87,12 @@ function DaySection(): JSX.Element {
     <StyledDay>
       <StyledDayTitleContainer>
         <StyledH1>Your Day</StyledH1>
+        <Button>
+          <Icon size={theme.iconSize} color={theme.colors.onSecondary}>
+            add
+          </Icon>
+          <StyledActionButtonText>Create</StyledActionButtonText>
+        </Button>
       </StyledDayTitleContainer>
       <StyledAppointmentList>
         {
