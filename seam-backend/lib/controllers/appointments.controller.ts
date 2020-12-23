@@ -35,7 +35,7 @@ export class AppointmentsController {
 
     this.router.post('/', (req, res) => {
       const appointment = req.body.appointment;
-
+      console.log(appointment);
       this.appointmentsService.insertAppointment(
         Number(appointment.providerid),
         appointment.title,

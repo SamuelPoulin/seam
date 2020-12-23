@@ -169,8 +169,8 @@ function createAppointment(
           title: title,
           description: description,
           location: location,
-          startTime: startTime.toISOString().replace('T', ' ').replace('Z', ''),
-          endTime: endTime.toISOString().replace('T', ' ').replace('Z', ''),
+          startTime: startTime.getFullYear() + '-' + (startTime.getMonth() + 1) + '-' + startTime.getDate() + ' ' + startTime.getHours() + ':' + startTime.getMinutes() + ':00',
+          endTime: endTime.getFullYear() + '-' + (endTime.getMonth() + 1) + '-' + endTime.getDate() + ' ' + endTime.getHours() + ':' + endTime.getMinutes() + ':00',
           customerid: customerid
         }
       }).then((response) => {
@@ -179,4 +179,4 @@ function createAppointment(
         reject(err);
       });
   });
-}
+} 

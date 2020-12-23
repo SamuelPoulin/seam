@@ -98,6 +98,8 @@ const StyledAppointmentList = styled.div`
   display: flex;
   align-items: center;
 
+  margin-top: 5px;
+
   width: 100%;
   overflow-x: auto;
 `;
@@ -145,8 +147,8 @@ function DaySection(): JSX.Element {
       'Hangout with Louis',
       'Probably play DS3',
       'Sams Place',
-      selectedDate,
-      new Date(selectedDate.setHours(selectedDate.getHours() + 1)),
+      new Date(),
+      new Date(new Date().getTime() + 60*1*1000),
       1
     ).then((appointmentid) => {
       setDialogOpen(false);
