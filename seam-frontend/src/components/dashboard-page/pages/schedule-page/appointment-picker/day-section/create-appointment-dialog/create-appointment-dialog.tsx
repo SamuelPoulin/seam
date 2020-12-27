@@ -102,9 +102,7 @@ function CreateAppointmentDialog(): JSX.Element {
                     <StyledSpace />
                     <StyledTitleText>Create an appointment</StyledTitleText>
                     <Button onClick={() => setDialogOpen(false)}>
-                        <Icon size={theme.iconSize} color={theme.colors.onSecondary}>
-                            close
-          </Icon>
+                        <Icon size={theme.iconSize} color={theme.colors.onSecondary}>close</Icon>
                     </Button>
                 </StyledDialogTitle>
                 <StyledPickingSection>
@@ -140,7 +138,7 @@ function CreateAppointmentDialog(): JSX.Element {
                         End time
             </StyledPickingTitle>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <DateTimePicker style={{ color: 'red', backgroundColor: theme.colors.secondary, borderTopLeftRadius: 5, borderTopRightRadius: 5 }} value={selectedDate} InputProps={{ style: { paddingLeft: 5, paddingRight: 5, fontSize: 20, fontFamily: 'Roboto Regular' } }} onChange={(date) => console.log(date)} showTodayButton />
+                        <DateTimePicker style={{ backgroundColor: theme.colors.secondary, borderTopLeftRadius: 5, borderTopRightRadius: 5 }} value={selectedDate} InputProps={{ style: { paddingLeft: 5, paddingRight: 5, fontSize: 20, fontFamily: 'Roboto Regular' } }} onChange={(date) => console.log(date)} showTodayButton />
                     </MuiPickersUtilsProvider>
                 </StyledPickingSection>
                 <StyledDialogBottomSection>
