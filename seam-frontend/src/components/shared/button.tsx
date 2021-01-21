@@ -11,6 +11,8 @@ export const StyledButton = styled.button`
   margin: 0px;
   padding: 0px;
 
+  transition: background-color 0.1s ease;
+
   background-color: ${(props) => props.theme.colors.secondary};
   border-radius: 10px;
 

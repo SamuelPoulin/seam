@@ -1,0 +1,15 @@
+[Unit]
+Description=Seam Dashboard 
+After=network.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+
+ProtectSystem=full
+ProtectHome=true
+
+ExecStart=/usr/bin/serve -s -l 5000 /srv/seam/dashboard
+Restart=always

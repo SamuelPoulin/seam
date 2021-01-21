@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Appointment } from '../models/appointment';
 import { Customer } from '../models/customer';
 
-const API_URL = `http://${window.location.hostname}`;
+const API_URL = `http://${window.location.hostname}:5001`;
 
 const APIContext = createContext({
   logIn: (email: string, password: string): Promise<string> => Promise.resolve(''),
@@ -11,7 +11,8 @@ const APIContext = createContext({
   signUp: (email: string, username: string, password: string): Promise<string> => Promise.resolve(''),
   getMonthAppointments: (token: string, year: number, month: number): Promise<Appointment[]> => Promise.resolve([]),
   getCustomers: (token: string): Promise<Customer[]> => Promise.resolve([]),
-  getCustomerById: (token: string, customerid: number): Promise<Customer> => Promise.resolve({ id: -1, firstName: '', lastName: '', email: '', phoneNo: '' })
+  getCustomerById: (token: string, customerid: number): Promise<Customer> => Promise.resolve({ id: -1, firstName: '', lastName: '', email: '', phoneNo: '' }),
+  createAppointment: (token: string, providerid: number, title: string, description: string, location: string, startTime: Date, endTime: Date, customerid: number): Promise<number> => Promise.resolve(-1)
 })
 
 export function APIProvider(props: any) {
@@ -21,7 +22,8 @@ export function APIProvider(props: any) {
     signUp: props.signUp || signUp,
     getMonthAppointments: props.getMonthAppointments || getMonthAppointments,
     getCustomers: props.getCustomers || getCustomers,
-    getCustomerById: props.getCustomerById || getCustomerById
+    getCustomerById: props.getCustomerById || getCustomerById,
+    createAppointment: props.createAppointment || createAppointment
   };
 
   return (
@@ -148,3 +150,33 @@ function getCustomerById(token: string, customerid: number): Promise<Customer> {
       })
   });
 }
+
+function createAppointment(
+  token: string,
+  providerid: number,
+  title: string,
+  description: string,
+  location: string,
+  startTime: Date,
+  endTime: Date,
+  customerid: number
+): Promise<number> {
+  return new Promise<number>((resolve, reject) => {
+    axios.post(`${API_URL}/api/appointments?access_token=${token}`,
+      {
+        appointment: {
+          providerid: providerid,
+          title: title,
+          description: description,
+          location: location,
+          startTime: startTime.getFullYear() + '-' + (startTime.getMonth() + 1) + '-' + startTime.getDate() + ' ' + startTime.getHours() + ':' + startTime.getMinutes() + ':00',
+          endTime: endTime.getFullYear() + '-' + (endTime.getMonth() + 1) + '-' + endTime.getDate() + ' ' + endTime.getHours() + ':' + endTime.getMinutes() + ':00',
+          customerid: customerid
+        }
+      }).then((response) => {
+        resolve(response.data);
+      }).catch((err) => {
+        reject(err);
+      });
+  });
+} 

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon",
+    "build": "tsc && cp -r node_modules/ out/node_modules/ && cp .env out/.env",
     "lint": "eslint --fix ."
   },
   "dependencies": {
@@ -18,7 +19,7 @@
     "@types/node": "^13.13.5",
     "atob": "^2.1.2",
     "axios": "^0.21.1",
-    "bcrypt": "^4.0.0",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
@@ -37,10 +38,11 @@
     "typescript": "^3.8.3"
   },
   "devDependencies": {
+    "@types/atob": "^2.1.2",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
     "eslint": "^7.0.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.20.2"
   }
 }

@@ -1,12 +1,12 @@
 import * as bodyParser from 'body-parser';
-import * as cookieParser from 'cookie-parser';
-import * as cors from 'cors';
-import * as express from 'express';
 import * as httpStatus from 'http-status-codes';
-import * as logger from 'morgan';
 import { inject, injectable } from 'inversify';
 import { APIController } from './controllers/api.controller';
 import Types from './inversify/types';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import express from 'express';
+import logger from 'morgan';
 
 @injectable()
 export class Application {

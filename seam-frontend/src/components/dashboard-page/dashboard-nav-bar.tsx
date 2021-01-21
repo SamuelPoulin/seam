@@ -5,6 +5,7 @@ import LinkButton from "../shared/link-button";
 import Icon from "../shared/icon";
 import Divider from "../shared/divider";
 import { useLocation } from "react-router-dom";
+import { Tooltip } from "@material-ui/core";
 
 const StyledMainWrapper = styled.div`
   position: fixed;
@@ -58,7 +59,7 @@ enum Pages {
   Schedule = "dashboard",
   Statistics = "dashboardstatistics",
   Widget = "dashboardwidget",
-  Extensions = "dashboard/extensions",
+  Extensions = "dashboardextensions",
   Settings = "dashboardsettings",
 }
 
@@ -76,44 +77,64 @@ function DashboardNavBar(): JSX.Element {
     <StyledMainWrapper>
       <StyledNavBarContainer>
         <StyledWrapper>
-          <LinkButton to="">
-            <Icon size={theme.iconSize} color={determineColor(Pages.Schedule)}>
-              calendar
+          <Tooltip title="Schedule" placement="right" arrow>
+            <div>
+              <LinkButton to="">
+                <Icon size={theme.iconSize} color={determineColor(Pages.Schedule)}>
+                  calendar
             </Icon>
-          </LinkButton>
+              </LinkButton>
+            </div>
+          </Tooltip>
           <StyledDivider />
-          <LinkButton to="/statistics">
-            <Icon
-              size={theme.iconSize}
-              color={determineColor(Pages.Statistics)}
-            >
-              statistics
+          <Tooltip title="Statistics" placement="right" arrow>
+            <div>
+              <LinkButton to="/statistics">
+                <Icon
+                  size={theme.iconSize}
+                  color={determineColor(Pages.Statistics)}
+                >
+                  statistics
             </Icon>
-          </LinkButton>
-          <LinkButton to="/widget">
-            <Icon size={theme.iconSize} color={determineColor(Pages.Widget)}>
-              widget
+              </LinkButton>
+            </div>
+          </Tooltip>
+          <Tooltip title="Widget" placement="right" arrow>
+            <div>
+              <LinkButton to="/widget">
+                <Icon size={theme.iconSize} color={determineColor(Pages.Widget)}>
+                  widget
             </Icon>
-          </LinkButton>
-          <LinkButton
-            to="/extensions"
-          >
-            <Icon
-              size={theme.iconSize}
-              color={determineColor(Pages.Extensions)}
-            >
-              extensions
+              </LinkButton>
+            </div>
+          </Tooltip>
+          <Tooltip title="Extensions" placement="right" arrow>
+            <div>
+              <LinkButton
+                to="/extensions"
+              >
+                <Icon
+                  size={theme.iconSize}
+                  color={determineColor(Pages.Extensions)}
+                >
+                  extensions
             </Icon>
-          </LinkButton>
+              </LinkButton>
+            </div>
+          </Tooltip>
         </StyledWrapper>
         <StyledWrapper>
-          <LinkButton
-            to="/settings"
-          >
-            <Icon size={theme.iconSize} color={determineColor(Pages.Settings)}>
-              settings
+          <Tooltip title="Settings" placement="right" arrow>
+            <div>
+              <LinkButton
+                to="/settings"
+              >
+                <Icon size={theme.iconSize} color={determineColor(Pages.Settings)}>
+                  settings
             </Icon>
-          </LinkButton>
+              </LinkButton>
+            </div>
+          </Tooltip>
         </StyledWrapper>
       </StyledNavBarContainer>
       <StyledDividerContainer>

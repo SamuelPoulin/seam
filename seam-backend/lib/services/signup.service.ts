@@ -3,8 +3,8 @@ import { inject, injectable } from 'inversify';
 import { DatabaseService } from './database.service';
 import Types from '../inversify/types';
 import { User } from '../models/user';
+import atob from 'atob';
 
-const atob: any = require('atob');
 
 @injectable()
 export class SignUpService {
@@ -34,6 +34,7 @@ export class SignUpService {
             ],
             (err, rows) => {
               if (err || !rows[0][0]) {
+                console.log(process.env);
                 reject(err);
               } else {
                 resolve(rows[0][0].id);

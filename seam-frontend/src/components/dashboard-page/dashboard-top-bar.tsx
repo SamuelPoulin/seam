@@ -7,7 +7,7 @@ import Button from "../shared/button";
 import Icon from "../shared/icon";
 import { useUser } from "../../services/user.service";
 import { useHistory } from "react-router-dom";
-import { useMediaQuery } from "@material-ui/core";
+import { Tooltip, useMediaQuery } from "@material-ui/core";
 
 const StyledLogo = styled.img`
   height: 40px;
@@ -104,9 +104,13 @@ function DashboardTopBar(): JSX.Element {
       </StyledCenterSection>
       {smallScreen ?
         <StyledRightSection>
-          <Button onClick={handleLogout}>
-            <Icon size={theme.iconSize} color={theme.colors.onBackground}>exit</Icon>
-          </Button>
+          <Tooltip title="Logout" arrow>
+            <div>
+              <Button onClick={handleLogout}>
+                <Icon size={theme.iconSize} color={theme.colors.onBackground}>exit</Icon>
+              </Button>
+            </div>
+          </Tooltip>
         </StyledRightSection> : null
       }
     </StyledWrapper>

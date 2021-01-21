@@ -33,6 +33,24 @@ export class AppointmentsController {
         });
     });
 
+    this.router.post('/', (req, res) => {
+      const appointment = req.body.appointment;
+      console.log(appointment);
+      this.appointmentsService.insertAppointment(
+        Number(appointment.providerid),
+        appointment.title,
+        appointment.description,
+        appointment.location,
+        appointment.startTime,
+        appointment.endTime,
+        Number(appointment.customerid)
+      ).then((appointmentid) => {
+        res.status(httpStatus.OK).json(appointmentid);
+      })
+        .catch(() => {
+          res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+        });
+    });
     this.router.get('/', (req, res) => {
       this.appointmentsService
         .getAppointmentsByUserId(Number(res.locals.decodedToken.userid))

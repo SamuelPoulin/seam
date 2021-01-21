@@ -12,6 +12,39 @@ END //
 
 DELIMITER ;
 
+DELIMITER //
+
+CREATE PROCEDURE insertAppointment (
+  pid BIGINT UNSIGNED,
+  t VARCHAR(50),
+  d VARCHAR(255),
+  l VARCHAR(255),
+  start TIMESTAMP,
+  end TIMESTAMP,
+  cid BIGINT UNSIGNED
+)
+BEGIN
+  INSERT INTO appointment (
+    providerid,
+    title,
+    description,
+    location,
+    startTime,
+    endTime,
+    customerid
+  ) VALUES (
+    pid,
+    t,
+    d,
+    l,
+    start,
+    end,
+    cid
+  );
+  SELECT LAST_INSERT_ID() AS id;
+END //
+
+DELIMITER ;
 
 DELIMITER //
 
@@ -44,6 +77,18 @@ CREATE PROCEDURE getMonthAppointmentsByUserId (
 )
 BEGIN
   SELECT * FROM appointment WHERE providerid = (SELECT id FROM provider WHERE userid = uid) AND YEAR(startTime) = year AND MONTH(startTime) = month;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER create_provider_trigger 
+AFTER INSERT ON user
+FOR EACH ROW
+BEGIN
+  INSERT INTO provider (userid, first_name, last_name, biography, pictureid)
+  VALUES (NEW.id, '', '', '', 0);
 END //
 
 DELIMITER ;
